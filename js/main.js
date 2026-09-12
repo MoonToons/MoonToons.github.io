@@ -237,3 +237,281 @@ const cio = new IntersectionObserver(es=>es.forEach(en=>{
   cio.unobserve(el);
 }),{threshold:.5});
 document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+
+/* =============================================================
+   AÑADIDO v5
+     11. Video al pasar el mouse (tarjetas e imágenes)
+     12. Modal de caso
+   ============================================================= */
+
+/* ---------- video en hover ---------- */
+document.querySelectorAll('.work, .slot').forEach(el=>{
+  const v = el.querySelector('.work-vid, .slot-vid');
+  if(!v) return;
+  el.addEventListener('mouseenter', ()=>{ v.play().catch(()=>{}); });
+  el.addEventListener('mouseleave', ()=>{ v.pause(); v.currentTime = 0; });
+});
+
+/* ---------- modal de caso ----------
+   Los datos se leen de la propia tarjeta, así que al editar el HTML
+   el modal se actualiza solo: no hay que tocar este archivo.
+   Si un caso tiene video largo aparte, añádelo en CASOS_VIDEO abajo. */
+const CASOS_VIDEO = {
+  // 'eleden': 'assets/caso-eleden-completo.mp4',
+  // o un embed de YouTube:  'eleden': 'https://www.youtube.com/embed/XXXXXXX'
+};
+
+(function(){
+  const modal = document.getElementById('modal');
+  if(!modal) return;
+  const vid   = document.getElementById('mVid');
+  const elTag = document.getElementById('mTag');
+  const elTit = document.getElementById('mTitulo');
+  const elDes = document.getElementById('mDesc');
+  const elMet = document.getElementById('mMetric');
+
+  function abrir(card){
+    const k = card.dataset.caso;
+    elTag.textContent = card.querySelector('.tag')?.textContent || '';
+    elTit.textContent = card.querySelector('h3')?.textContent || '';
+    elDes.textContent = card.querySelector('p')?.textContent || '';
+    elMet.textContent = card.querySelector('.metric')?.textContent || '';
+
+    const fuente = CASOS_VIDEO[k] || `assets/work-${k}.mp4`;
+    const poster = `assets/work-${k}.jpg`;
+    vid.src = fuente;
+    vid.poster = poster;
+    vid.load();
+
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-abierto');
+  }
+
+  function cerrar(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-abierto');
+    vid.pause(); vid.removeAttribute('src'); vid.load();
+  }
+
+  document.querySelectorAll('.work[data-caso]').forEach(card=>{
+    card.addEventListener('click', e=>{ e.preventDefault(); abrir(card); });
+  });
+  modal.querySelectorAll('[data-cerrar]').forEach(b=>b.addEventListener('click', cerrar));
+  addEventListener('keydown', e=>{ if(e.key==='Escape' && modal.classList.contains('open')) cerrar(); });
+})();
+
+
+/* =============================================================
+   AÑADIDO v6
+     13. Carrusel que se rellena solo (sin huecos en pantallas anchas)
+     14. Selectores con video (proceso, drone)
+     15. Nodos de color
+   ============================================================= */
+
+/* ---------- 13. carrusel sin huecos ----------
+   El bug: la animación va de 0 a -50%, así que la pista tiene que medir
+   como mínimo el doble del viewport. En monitores anchos no alcanzaba y
+   se veía el vacío. Ahora se clona el contenido hasta que sobre. */
+document.querySelectorAll('.svc-rail').forEach(rail=>{
+  const track = rail.querySelector('.svc-track');
+  if(!track) return;
+  const originales = Array.from(track.children);
+  if(!originales.length) return;
+
+  function rellenar(){
+    // dejar solo el juego original
+    track.innerHTML = '';
+    originales.forEach(el=>track.appendChild(el));
+    const anchoJuego = track.scrollWidth;
+    if(!anchoJuego) return;
+
+    // cuántas copias para que media pista ya cubra la pantalla
+    const necesarias = Math.max(2, Math.ceil((innerWidth * 1.25) / anchoJuego));
+    for(let i=1;i<necesarias;i++){
+      originales.forEach(el=>track.appendChild(el.cloneNode(true)));
+    }
+    // duplicar el total: la animación -50% recorre exactamente una mitad
+    const mitad = Array.from(track.children);
+    mitad.forEach(el=>track.appendChild(el.cloneNode(true)));
+
+    // velocidad constante sin importar cuántas copias haya
+    const px = track.scrollWidth / 2;
+    track.style.setProperty('--rail-dur', (px / 42) + 's');
+
+    // reenganchar el hover de reproducción en los clones
+    track.querySelectorAll('.svc').forEach(c=>{
+      const v = c.querySelector('video');
+      if(!v || v.dataset.listo) return;
+      v.dataset.listo = '1';
+      c.addEventListener('mouseenter', ()=>v.play().catch(()=>{}));
+      c.addEventListener('mouseleave', ()=>{v.pause(); v.currentTime=0;});
+    });
+  }
+
+  rellenar();
+  let t; addEventListener('resize', ()=>{ clearTimeout(t); t=setTimeout(rellenar,250); });
+});
+
+/* ---------- 14. selectores con video ----------
+   Sin selección va recorriendo solo. Al elegir uno se queda ahí. */
+document.querySelectorAll('[data-selector]').forEach(sel=>{
+  const botones = Array.from(sel.querySelectorAll('.sel-btn'));
+  const stage   = sel.querySelector('[data-stage]');
+  const hud     = sel.querySelector('[data-hudout]');
+  const aviso   = sel.querySelector('[data-autoout]');
+  if(!botones.length || !stage) return;
+
+  let i = 0, auto = sel.dataset.auto === '1', timer = null;
+
+  function poner(n, porClic){
+    i = (n + botones.length) % botones.length;
+    const b = botones[i];
+    botones.forEach(x=>x.classList.toggle('on', x===b));
+    stage.poster = b.dataset.poster || '';
+    stage.src    = b.dataset.vid;
+    stage.load();
+    stage.play().catch(()=>{});
+    if(hud) hud.textContent = b.dataset.hud || '';
+    if(porClic){
+      auto = false;
+      clearInterval(timer);
+      if(aviso) aviso.textContent = 'SELECCIONADO';
+    }
+  }
+
+  botones.forEach((b,n)=>b.addEventListener('click', ()=>poner(n, true)));
+
+  // arranca cuando entra en pantalla, para no cargar video de más
+  const io = new IntersectionObserver(es=>es.forEach(en=>{
+    if(!en.isIntersecting) return;
+    poner(0, false);
+    if(auto) timer = setInterval(()=>{ if(auto) poner(i+1, false); }, 4200);
+    io.disconnect();
+  }),{threshold:.25});
+  io.observe(sel);
+});
+
+/* ---------- 15. nodos de color ---------- */
+(function(){
+  const img = document.getElementById('nodoImg');
+  if(!img) return;
+  const nodos = document.querySelectorAll('.nodo');
+  nodos.forEach(n=>n.addEventListener('click', ()=>{
+    nodos.forEach(x=>x.classList.toggle('on', x===n));
+    // fundido corto al cambiar de etapa
+    img.style.opacity = '0';
+    setTimeout(()=>{ img.src = n.dataset.nodo; img.style.opacity = '1'; }, 140);
+  }));
+  img.style.transition = 'opacity .28s ease';
+})();
+
+/* ---------- El Edén / FOOH: reproducir al pasar el mouse ---------- */
+document.querySelectorAll('.fooh').forEach(f=>{
+  const v = f.querySelector('video');
+  if(!v) return;
+  f.addEventListener('mouseenter', ()=>v.play().catch(()=>{}));
+  f.addEventListener('mouseleave', ()=>{v.pause(); v.currentTime=0;});
+});
+
+
+/* =============================================================
+   AÑADIDO v7
+     16. Video de fondo del hero (opcional, con parallax 3D)
+     17. Hover en selectores y nodos (sin obligar a hacer clic)
+   ============================================================= */
+
+/* ---------- 16. video de fondo del hero ----------
+   Solo se activa si existe assets/hero-bg.mp4. Si no está, el hero
+   queda exactamente como antes: no hay que tocar nada.
+   Pon ahí un video que combine (movimiento lento, sin texto) y
+   aparece al 30% detrás del diafragma, moviéndose con el mouse. */
+(function(){
+  const v = document.getElementById('heroBg');
+  const hero = document.querySelector('.hero');
+  if(!v || !hero) return;
+
+  v.src = 'assets/hero-bg.mp4';
+
+  // si no existe el archivo, se queda invisible y no molesta
+  v.addEventListener('error', ()=>{ v.remove(); }, {once:true});
+  v.addEventListener('loadeddata', ()=>{
+    v.classList.add('listo');
+    v.play().catch(()=>{});
+  }, {once:true});
+  v.load();
+
+  // parallax 3D: acompaña al diafragma en vez de competir con él
+  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(reduce) return;
+  let tx=0,ty=0,cx=0,cy=0;
+  hero.addEventListener('pointermove', e=>{
+    const r = hero.getBoundingClientRect();
+    tx = ((e.clientX-r.left)/r.width - .5);
+    ty = ((e.clientY-r.top)/r.height - .5);
+  });
+  hero.addEventListener('pointerleave', ()=>{ tx=0; ty=0; });
+  (function bucle(){
+    cx += (tx-cx)*.06; cy += (ty-cy)*.06;
+    v.style.transform =
+      `perspective(1200px) rotateY(${(cx*5).toFixed(2)}deg) rotateX(${(-cy*4).toFixed(2)}deg) `+
+      `scale(1.12) translate3d(${(-cx*26).toFixed(1)}px, ${(-cy*20).toFixed(1)}px, 0)`;
+    requestAnimationFrame(bucle);
+  })();
+})();
+
+/* ---------- 17. hover en selectores y nodos ----------
+   Antes había que hacer clic. Ahora basta pasar el mouse; el clic
+   sigue sirviendo para fijar la selección. */
+document.querySelectorAll('[data-selector]').forEach(sel=>{
+  sel.querySelectorAll('.sel-btn').forEach(b=>{
+    b.addEventListener('mouseenter', ()=>{
+      if(!b.classList.contains('on')) b.click();
+    });
+  });
+});
+document.querySelectorAll('.nodo').forEach(n=>{
+  n.addEventListener('mouseenter', ()=>{
+    if(!n.classList.contains('on')) n.click();
+  });
+});
+
+
+/* =============================================================
+   AÑADIDO v8
+     18. Panel retraído mientras corre el video
+     19. Destino real de cada tarjeta
+   ============================================================= */
+
+/* ---------- 18. el panel se retrae al reproducir ---------- */
+document.querySelectorAll('.work').forEach(card=>{
+  const v = card.querySelector('.work-vid');
+  if(!v) return;
+  // se marca cuando el video ya está dando imagen, no en el mouseenter:
+  // así el texto no desaparece antes de que haya algo que mostrar
+  v.addEventListener('playing', ()=>card.classList.add('reproduciendo'));
+  card.addEventListener('mouseleave', ()=>card.classList.remove('reproduciendo'));
+});
+
+/* ---------- 19. destino de cada tarjeta ----------
+   data-ir="#seccion"  → baja a esa sección del sitio
+   data-url="https://" → abre un enlace externo
+   si no tiene ninguno → abre el modal del caso
+   El texto del botón se toma de data-cta. */
+document.querySelectorAll('.work[data-cta]').forEach(card=>{
+  const go = card.querySelector('.go');
+  if(go) go.textContent = card.dataset.cta;
+});
+
+document.querySelectorAll('.work[data-ir], .work[data-url]').forEach(card=>{
+  card.addEventListener('click', e=>{
+    e.preventDefault();
+    e.stopImmediatePropagation();   // gana al modal
+    const url = card.dataset.url;
+    if(url){ window.open(url,'_blank','noopener'); return; }
+    const destino = document.querySelector(card.dataset.ir);
+    if(destino) destino.scrollIntoView({behavior:'smooth', block:'start'});
+  }, true);
+});
