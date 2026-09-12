@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enrique Antonio — Filmmaker · Editor · VFX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<canvas id="grainCanvas"></canvas>
+<div class="vignette"></div>
+<div class="cursor" id="cursor"></div>
+
+<header>
+  <nav class="wrap">
+    <a href="#top" class="brand">Enrique Antonio <span>@antoine.vfx — Bogotá, CO</span></a>
+    <div class="navlinks" id="navlinks">
+      <a href="#trabajo">Trabajo</a>
+      <a href="#capacidades">Capacidades</a>
+      <a href="#eleden">El Edén</a>
+      <a href="#cine">Cine</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#reel">Reel</a>
+      <a href="#proceso">Proceso 3D</a>
+      <a href="#color">Color</a>
+      <a href="#clientes">Clientes</a>
+      <a href="#nodos">Color</a>
+      <a href="#drone">Drone</a>
+      <a href="#plugins">Plugins</a>
+      <a href="#equipo">Equipo</a>
+    </div>
+    <button class="navtoggle" id="navtoggle" aria-label="Abrir menú">MENÚ</button>
+    <a href="#contacto" class="btn">CONTRATAR</a>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <!-- Video de fondo OPCIONAL: si no existe assets/hero-bg.mp4 el JS lo
+       oculta y el hero queda exactamente como antes. -->
+  <video id="heroBg" muted loop playsinline preload="none"
+         disablepictureinpicture controlslist="nodownload"></video>
+  <canvas id="lensCanvas"></canvas>
+  <div class="bloom wig" style="width:4200px;height:420px;background:#DD4B24;top:-120px;left:8%;"></div>
+  <div class="bloom wig-b" style="width:3600px;height:200px;background:#3C6A65;bottom:-140px;right:6%;opacity:.35;"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="status"><span class="dot"></span> DISPONIBLE — FREELANCE Y TIEMPO COMPLETO</div>
+        <h1>Contratas una persona. Recibes <span class="em">un equipo entero</span>.</h1>
+        <p class="lede">Filmé, edité y coloreé una película que llegó a sala de cine yo solo. Eso mismo aplico a tu marca: rodaje con drone y cámara propios, edición, color, 3D y VFX — y videos pensados para vender, no para adornar.</p>
+        <div class="hero-cta btn-row">
+          <a href="#trabajo" class="btn">Ver trabajo</a>
+          <a href="#contacto" class="btn btn-ghost">Hablemos</a>
+        </div>
+      </div>
+      <div class="hero-photo wig" id="heroPhoto">
+        <img src="assets/antonio-headshot.png" alt="Enrique Antonio Cepeda en su estación de trabajo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track fade-x">
+    <span>CGI / FOOH<em>·</em>COLOR GRADING<em>·</em>ADS &amp; VSL<em>·</em>REELS A VOLUMEN<em>·</em>DRONE FPV<em>·</em>ANIMACIÓN 3D<em>·</em>TRACKING<em>·</em>SOUND DESIGN<em>·</em>DIRECCIÓN DE FOTOGRAFÍA<em>·</em></span>
+    <span>CGI / FOOH<em>·</em>COLOR GRADING<em>·</em>ADS &amp; VSL<em>·</em>REELS A VOLUMEN<em>·</em>DRONE FPV<em>·</em>ANIMACIÓN 3D<em>·</em>TRACKING<em>·</em>SOUND DESIGN<em>·</em>DIRECCIÓN DE FOTOGRAFÍA<em>·</em></span>
+  </div>
+</div>
+
+<div class="proof">
+  <div class="proof-item tex"><div class="n" data-count="5.4">0</div><div class="c">millones de vistas orgánicas — Jurassic El Edén</div></div>
+  <div class="proof-item tex"><div class="n" data-count="60">0</div><div class="c">reels/mes de capacidad sostenida</div></div>
+  <div class="proof-item tex"><div class="n" data-count="6">0</div><div class="c">clientes activos e infoproductores</div></div>
+  <div class="proof-item tex"><div class="n" data-count="1">0</div><div class="c">estreno en cine como solo-filmmaker</div></div>
+</div>
+
+<section id="trabajo">
+  <div class="wrap reveal">
+    <div class="eyebrow">TRABAJO SELECCIONADO</div>
+    <h2>Lo que hice para otros, con el número al lado.</h2>
+    <p class="sub">Sin adjetivos: qué problema tenía el cliente, qué se hizo y qué pasó después.</p>
+    <div class="work-grid">
+      <button class="work lg" data-tilt data-caso="eleden" data-ir="#eleden" data-cta="VER CAMPAÑA COMPLETA →">
+        <img class="work-bg" src="assets/work-eleden.jpg" alt="Jurassic El Edén">
+        <video class="work-vid" src="assets/work-eleden.mp4" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+        <span class="go">VER CASO →</span>
+        <div class="work-body">
+          <div class="tag">CGI · FOOH · DIRECCIÓN</div>
+          <h3>Jurassic El Edén</h3>
+          <p>Campaña de dinosaurios en CGI integrada al centro comercial CC El Edén — del modelado y la animación al tracking, integración y grading final.</p>
+          <div class="metric">5.4M+ vistas orgánicas</div>
+        </div>
+      </button>
+      <button class="work md" data-tilt data-caso="maria">
+        <img class="work-bg" src="assets/work-maria.jpg" alt="María Salazar">
+        <video class="work-vid" src="assets/work-maria.mp4" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+        <span class="go">VER CASO →</span>
+        <div class="work-body">
+          <div class="tag">ADS · VSL</div>
+          <h3>María Salazar</h3>
+          <p>Ads y VSL para infoproducto, clienta recurrente.</p>
+          <div class="metric">Cliente recurrente</div>
+        </div>
+      </button>
+      <button class="work md" data-tilt data-caso="nova" data-cta="VER CASO →">
+        <img class="work-bg" src="assets/work-nova.jpg" alt="Sistema Nova">
+        <video class="work-vid" src="assets/work-nova.mp4" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+        <span class="go">VER CASO →</span>
+        <div class="work-body">
+          <div class="tag">VSL · MOTION</div>
+          <h3>Sistema Nova</h3>
+          <p>Motion graphics para VSL bajo retainer europeo multianual.</p>
+          <div class="metric">Retainer activo</div>
+        </div>
+      </button>
+      <button class="work sm" data-tilt data-caso="fooh2" data-ir="#eleden" data-cta="VER FOOH →">
+        <img class="work-bg" src="assets/work-fooh2.jpg" alt="FOOH — segunda campaña">
+        <video class="work-vid" src="assets/work-fooh2.mp4" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+        <span class="go">VER CASO →</span>
+        <div class="work-body">
+          <div class="tag">CGI · FOOH</div>
+          <h3>FOOH — segunda campaña</h3>
+          <p>Integración de CGI en espacio real.</p>
+          <div class="metric">REEMPLAZAR DATO</div>
+        </div>
+      </button>
+      <button class="work sm" data-tilt data-caso="drone" data-ir="#drone" data-cta="VER TOMAS AÉREAS →">
+        <img class="work-bg" src="assets/work-drone.jpg" alt="Aéreo con drone">
+        <video class="work-vid" src="assets/work-drone.mp4" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+        <span class="go">VER CASO →</span>
+        <div class="work-body">
+          <div class="tag">DRONE · AÉREO</div>
+          <h3>Aéreo con drone</h3>
+          <p>Tomas aéreas con Mavic 3 Pro y FPV.</p>
+          <div class="metric">REEMPLAZAR DATO</div>
+        </div>
+      </button>
+      <button class="work sm" data-tilt data-caso="musica">
+        <img class="work-bg" src="assets/work-musica.jpg" alt="Video musical">
+        <video class="work-vid" src="assets/work-musica.mp4" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+        <span class="go">VER CASO →</span>
+        <div class="work-body">
+          <div class="tag">VIDEO MUSICAL</div>
+          <h3>Video musical</h3>
+          <p>Dirección, rodaje y post.</p>
+          <div class="metric">REEMPLAZAR DATO</div>
+        </div>
+      </button>
+      <button class="work sm" data-tilt data-caso="novaagencia">
+        <img class="work-bg" src="assets/work-novaagencia.jpg" alt="Nova Agencia">
+        <video class="work-vid" src="assets/work-novaagencia.mp4" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+        <span class="go">VER CASO →</span>
+        <div class="work-body">
+          <div class="tag">INFOPRODUCTO</div>
+          <h3>Nova Agencia</h3>
+          <p>Pipeline recurrente de piezas para clientes top.</p>
+          <div class="metric">Cliente activo</div>
+        </div>
+      </button>
+      <button class="work sm" data-tilt data-caso="theglow" data-url="https://instagram.com/silviarubio.m" data-cta="VER PERFIL →">
+        <img class="work-bg" src="assets/work-theglow.jpg" alt="The Glow">
+        <video class="work-vid" src="assets/work-theglow.mp4" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+        <span class="go">VER CASO →</span>
+        <div class="work-body">
+          <div class="tag">VSL · MOTION</div>
+          <h3>The Glow</h3>
+          <p>Motion graphics para comunidad de Instagram.</p>
+          <div class="metric">Cliente activo</div>
+        </div>
+      </button>
+      <button class="work sm" data-tilt data-caso="nicolas">
+        <img class="work-bg" src="assets/work-nicolas.jpg" alt="Nicolás Lara">
+        <video class="work-vid" src="assets/work-nicolas.mp4" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+        <span class="go">VER CASO →</span>
+        <div class="work-body">
+          <div class="tag">EDICIÓN DE CANAL</div>
+          <h3>Nicolás Lara</h3>
+          <p>Crecimiento de canal desde cero.</p>
+          <div class="metric">Crecimiento sostenido</div>
+        </div>
+      </button>
+      <button class="work sm" data-tilt data-caso="corporativo">
+        <img class="work-bg" src="assets/work-corporativo.jpg" alt="Institucional">
+        <video class="work-vid" src="assets/work-corporativo.mp4" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+        <span class="go">VER CASO →</span>
+        <div class="work-body">
+          <div class="tag">CORPORATIVO</div>
+          <h3>Institucional</h3>
+          <p>Video corporativo y de marca.</p>
+          <div class="metric">REEMPLAZAR DATO</div>
+        </div>
+      </button>
+    </div>
+
+    <div class="pitch">
+      <div class="pz tex" data-tilt>
+        <div class="q">"Coordinar camarógrafo, editor, colorista y animador me consume la semana."</div>
+        <div class="a">Aquí hay <span class="k">un solo interlocutor</span> de la idea a la entrega. Sin briefs repetidos, sin archivos perdidos entre freelancers, sin culpas cruzadas cuando algo sale mal.</div>
+      </div>
+      <div class="pz tex" data-tilt>
+        <div class="q">"Necesito volumen, pero lo barato me sale mal editado."</div>
+        <div class="a">Mis propios plugins hacen el trabajo repetitivo, así que el <span class="k">volumen no se paga con calidad</span>. Lo que se automatiza es lo mecánico; el criterio de corte sigue siendo humano.</div>
+      </div>
+      <div class="pz tex" data-tilt>
+        <div class="q">"Los videos se ven bonitos pero no venden nada."</div>
+        <div class="a">Vengo de editar para infoproductores que <span class="k">viven de que el video convierta</span>. El gancho, el ritmo y la estructura se diseñan para retención, no para el portafolio.</div>
+      </div>
+    </div>
+    <div class="flag">
+      <div>
+        <div class="mono">PENDIENTE — LINKS DE CADA CASO</div>
+        <p>Cada tarjeta está lista para apuntar a su caso o perfil real. Faltan los enlaces de El Edén, María Salazar, Sistema Nova, Nova Agencia y Nicolás Lara.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="capacidades">
+  <div class="wrap reveal">
+    <div class="eyebrow">CAPACIDADES</div>
+    <h2>Cinco facturas distintas, en una sola.</h2>
+    <p class="sub">Cada una de estas la cobra normalmente un proveedor aparte, con su propio brief y sus propios tiempos muertos.</p>
+    <div class="caps">
+      <div class="cap tex" data-tilt>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="8" height="6"/><rect x="13" y="5" width="8" height="6"/><rect x="3" y="13" width="8" height="6"/><path d="M15 15l4 2-4 2z"/></svg>
+        <div class="tag">PREPRODUCCIÓN</div><h3>Historia y plan de rodaje</h3>
+        <p>Estructura, ritmo y planos definidos antes de grabar — oficio aprendido editando para youtubers grandes desde el guion hacia atrás.</p>
+      </div>
+      <div class="cap tex" data-tilt>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="3.2"/><circle cx="4.8" cy="8.4" r="1.7"/><circle cx="19.2" cy="8.4" r="1.7"/><path d="M6.4 9.6l3 1.4M17.6 9.6l-3 1.4M8 15.4h8l-1.6 4.4H9.6z"/></svg>
+        <div class="tag">PRODUCCIÓN</div><h3>Rodaje completo</h3>
+        <p>Dirección, dirección de fotografía y piloto de drone propio — cobertura de principio a fin sin depender de terceros.</p>
+      </div>
+      <div class="cap tex" data-tilt>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8.2"/><path d="M12 3.8v3.4M12 16.8v3.4M3.8 12h3.4M16.8 12h3.4M6.3 6.3l2.4 2.4M15.3 15.3l2.4 2.4M17.7 6.3l-2.4 2.4M8.7 15.3l-2.4 2.4"/></svg>
+        <div class="tag">POST</div><h3>Edición, color y VFX</h3>
+        <p>Edición, 3D, tracking, compositing y color science real — pipeline ACES 2.0 con emulación fotoquímica.</p>
+      </div>
+      <div class="cap tex" data-tilt>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 17l4.5-6 3.5 4L15.5 9 20 15.5"/><path d="M4 20.5h16"/><circle cx="20" cy="15.5" r="1.2"/></svg>
+        <div class="tag">COMERCIAL</div><h3>Edición que vende</h3>
+        <p>Ads, VSL y reels a volumen para marcas, negocios locales e infoproductores, con historial de aportar a ventas.</p>
+      </div>
+      <div class="cap tex" data-tilt>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="7" cy="7" r="2"/><circle cx="17" cy="7" r="2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M9 7h6M7 9v6M17 9v6M9 17h6"/></svg>
+        <div class="tag">INGENIERÍA</div><h3>Flujo automatizado</h3>
+        <p>Plugins propios y flujos con IA — la parte que la mayoría de editores no sabe construir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="proceso">
+  <div class="wrap reveal">
+    <div class="eyebrow">PROCESO CREATIVO — CGI / FOOH</div>
+    <h2>De la idea al fotograma final.</h2>
+    <p class="sub">Así se construye una pieza como Jurassic El Edén, paso a paso.</p>
+    <div class="sel" data-selector data-auto="1">
+      <div class="sel-list">
+        <button class="sel-btn" data-vid="assets/proceso-modelado.mp4" data-poster="assets/proceso-modelado-poster.jpg" data-hud="01 · MODELADO">
+          <span class="num">01</span>
+          <span><span class="tt">Modelado</span><span class="dd">Construcción del asset 3D con proporción y detalle listos para animar.</span></span>
+        </button>
+        <button class="sel-btn" data-vid="assets/proceso-animacion.mp4" data-poster="assets/proceso-animacion-poster.jpg" data-hud="02 · ANIMACIÓN">
+          <span class="num">02</span>
+          <span><span class="tt">Animación</span><span class="dd">Movimiento y timing del asset dentro de la escena planeada.</span></span>
+        </button>
+        <button class="sel-btn" data-vid="assets/proceso-tracking.mp4" data-poster="assets/proceso-tracking-poster.jpg" data-hud="03 · TRACKING">
+          <span class="num">03</span>
+          <span><span class="tt">Tracking</span><span class="dd">Seguimiento de cámara sobre el rodaje real para anclar el 3D al mundo físico.</span></span>
+        </button>
+        <button class="sel-btn" data-vid="assets/proceso-grabacion.mp4" data-poster="assets/proceso-grabacion-poster.jpg" data-hud="04 · GRABACIÓN">
+          <span class="num">04</span>
+          <span><span class="tt">Grabación</span><span class="dd">Rodaje en locación con la referencia lumínica que exige la integración.</span></span>
+        </button>
+        <button class="sel-btn" data-vid="assets/proceso-integracion.mp4" data-poster="assets/proceso-integracion-poster.jpg" data-hud="05 · COLOR E INTEGRACIÓN">
+          <span class="num">05</span>
+          <span><span class="tt">Color e integración</span><span class="dd">Compositing y match de luz y color entre el CGI y la placa real.</span></span>
+        </button>
+        <button class="sel-btn" data-vid="assets/proceso-final.mp4" data-poster="assets/proceso-final-poster.jpg" data-hud="06 · ENTREGA FINAL">
+          <span class="num">06</span>
+          <span><span class="tt">Entrega final</span><span class="dd">Grading final y exportación lista para pauta o pantalla gigante.</span></span>
+        </button>
+      </div>
+      <div class="sel-stage">
+        <video data-stage muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+        <span class="sel-hud" data-hudout></span>
+        <span class="sel-auto" data-autoout>RECORRIENDO — elige un paso</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section id="cine">
+  <div class="wrap reveal">
+    <div class="cine tex">
+      <div class="cine-badge">◉ ESTRENO EN SALA DE CINE</div>
+      <h2>Escribí, filmé, edité y coloreé una película que llegó a cine. Solo.</h2>
+      <p class="cine-lede">No es un reel de agencia con diez personas detrás. Es una película entera sostenida por una sola persona: guion, cámara, luz, sonido, edición, VFX y color. Si eso se sostiene 90 minutos en pantalla grande, tu campaña de 30 segundos no es un riesgo.</p>
+      <div class="cine-media">
+        <figure class="cm v wig" data-tilt>
+          <video src="assets/cine-rodaje.mp4" poster="assets/cine-rodaje-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <figcaption>cine-rodaje.mp4 — cómo se grabó</figcaption>
+        </figure>
+        <figure class="cm v wig-b" data-tilt>
+          <video src="assets/cine-estreno.mp4" poster="assets/cine-estreno-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <figcaption>cine-estreno.mp4 — el día del estreno</figcaption>
+        </figure>
+        <figure class="cm hz wig-c" data-tilt>
+          <video src="assets/cine-final.mp4" poster="assets/cine-final-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <figcaption>cine-final.mp4 — la película terminada</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="servicios">
+  <div class="wrap reveal">
+    <div class="eyebrow">SERVICIOS</div>
+    <h2>Contrátame por lo que necesitas, no por un paquete cerrado.</h2>
+    <p class="sub">Cada servicio con su propia muestra en video. Pasa el mouse para pausar el carrusel y reproducir la pieza.</p>
+  </div>
+  <div class="svc-rail fade-x">
+    <div class="svc-track">
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-vsl.mp4" poster="assets/svc-vsl-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-vsl.mp4</span>
+          <div class="svc-cap"><div class="t">VSL</div><div class="d">Cartas de venta que sostienen atención 10+ min</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-ads.mp4" poster="assets/svc-ads-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-ads.mp4</span>
+          <div class="svc-cap"><div class="t">Ads</div><div class="d">Creativos para pauta, pensados para CTR y retención</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-color.mp4" poster="assets/svc-color-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-color.mp4</span>
+          <div class="svc-cap"><div class="t">Color grading</div><div class="d">ACES 2.0 y emulación fotoquímica Kodak/Fuji</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-motion.mp4" poster="assets/svc-motion-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-motion.mp4</span>
+          <div class="svc-cap"><div class="t">Motion graphics</div><div class="d">Animación 2D, tipografía y gráficos de marca</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-vfx.mp4" poster="assets/svc-vfx-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-vfx.mp4</span>
+          <div class="svc-cap"><div class="t">VFX / FOOH</div><div class="d">CGI integrado, tracking y compositing</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-vsl.mp4" poster="assets/svc-vsl-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-vsl.mp4</span>
+          <div class="svc-cap"><div class="t">VSL</div><div class="d">Cartas de venta que sostienen atención 10+ min</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-ads.mp4" poster="assets/svc-ads-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-ads.mp4</span>
+          <div class="svc-cap"><div class="t">Ads</div><div class="d">Creativos para pauta, pensados para CTR y retención</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-color.mp4" poster="assets/svc-color-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-color.mp4</span>
+          <div class="svc-cap"><div class="t">Color grading</div><div class="d">ACES 2.0 y emulación fotoquímica Kodak/Fuji</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-motion.mp4" poster="assets/svc-motion-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-motion.mp4</span>
+          <div class="svc-cap"><div class="t">Motion graphics</div><div class="d">Animación 2D, tipografía y gráficos de marca</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-vfx.mp4" poster="assets/svc-vfx-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-vfx.mp4</span>
+          <div class="svc-cap"><div class="t">VFX / FOOH</div><div class="d">CGI integrado, tracking y compositing</div></div>
+        </a>
+    </div>
+  </div>
+  <div class="svc-rail fade-x" style="margin-top:16px;">
+    <div class="svc-track rev">
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-ia.mp4" poster="assets/svc-ia-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-ia.mp4</span>
+          <div class="svc-cap"><div class="t">Flujos con IA</div><div class="d">Automatización de post y generación asistida</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-plugins.mp4" poster="assets/svc-plugins-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-plugins.mp4</span>
+          <div class="svc-cap"><div class="t">Plugins a medida</div><div class="d">Herramientas propias para Premiere, AE y Resolve</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-youtube.mp4" poster="assets/svc-youtube-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-youtube.mp4</span>
+          <div class="svc-cap"><div class="t">Video YouTube</div><div class="d">Edición de canal con ritmo de retención</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-documental.mp4" poster="assets/svc-documental-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-documental.mp4</span>
+          <div class="svc-cap"><div class="t">Documental</div><div class="d">Narrativa larga, entrevista y observacional</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-ia.mp4" poster="assets/svc-ia-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-ia.mp4</span>
+          <div class="svc-cap"><div class="t">Flujos con IA</div><div class="d">Automatización de post y generación asistida</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-plugins.mp4" poster="assets/svc-plugins-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-plugins.mp4</span>
+          <div class="svc-cap"><div class="t">Plugins a medida</div><div class="d">Herramientas propias para Premiere, AE y Resolve</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-youtube.mp4" poster="assets/svc-youtube-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-youtube.mp4</span>
+          <div class="svc-cap"><div class="t">Video YouTube</div><div class="d">Edición de canal con ritmo de retención</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-documental.mp4" poster="assets/svc-documental-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-documental.mp4</span>
+          <div class="svc-cap"><div class="t">Documental</div><div class="d">Narrativa larga, entrevista y observacional</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-ia.mp4" poster="assets/svc-ia-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-ia.mp4</span>
+          <div class="svc-cap"><div class="t">Flujos con IA</div><div class="d">Automatización de post y generación asistida</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-plugins.mp4" poster="assets/svc-plugins-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-plugins.mp4</span>
+          <div class="svc-cap"><div class="t">Plugins a medida</div><div class="d">Herramientas propias para Premiere, AE y Resolve</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-youtube.mp4" poster="assets/svc-youtube-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-youtube.mp4</span>
+          <div class="svc-cap"><div class="t">Video YouTube</div><div class="d">Edición de canal con ritmo de retención</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-documental.mp4" poster="assets/svc-documental-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+          <span class="svc-badge">svc-documental.mp4</span>
+          <div class="svc-cap"><div class="t">Documental</div><div class="d">Narrativa larga, entrevista y observacional</div></div>
+        </a>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:34px;">
+    <div class="btn-row"><a href="#contacto" class="btn">Pedir presupuesto</a></div>
+  </div>
+</section>
+
+<section id="reel">
+  <div class="wrap reveal">
+    <div class="eyebrow">REEL</div>
+    <h2>Reel principal y casos en video.</h2>
+    <p class="sub">Los videos de abajo son referencias con grano — reemplázalos por tus archivos reales con el mismo nombre y el sitio queda listo.</p>
+    <div class="reel-main">
+      <video src="assets/reel-principal.mp4" poster="assets/reel-principal-poster.jpg" autoplay muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate"></video>
+      <span class="reel-badge">assets/reel-principal.mp4 — 60-90s, 1920×1080</span>
+    </div>
+    <div class="reel-vert">
+      <figure class="rv" data-tilt>
+        <video src="assets/caso-ads.mp4" poster="assets/caso-ads-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate"></video>
+        <figcaption>assets/caso-ads.mp4 — 1080×1350</figcaption>
+      </figure>
+      <figure class="rv" data-tilt>
+        <video src="assets/caso-fooh.mp4" poster="assets/caso-fooh-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate"></video>
+        <figcaption>assets/caso-fooh.mp4 — 1080×1350</figcaption>
+      </figure>
+      <figure class="rv" data-tilt>
+        <video src="assets/caso-extra.mp4" poster="assets/caso-extra-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate"></video>
+        <figcaption>assets/caso-extra.mp4 — 1080×1350</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+
+<section id="eleden">
+  <div class="wrap reveal">
+    <div class="insignia tex">
+      <div class="cine-badge">◉ CASO INSIGNIA · FOOH</div>
+      <h2>Jurassic El Edén: una campaña completa, no un video suelto.</h2>
+      <p class="cine-lede">Varias piezas de FOOH para el mismo centro comercial, con dinosaurios en CGI integrados al espacio real. La campaña acumuló 5.4M+ de vistas orgánicas y llegó a prensa. Esto es el servicio que casi nadie más puede entregar de punta a punta en Colombia.</p>
+
+      <div class="logros" style="margin-top:8px;">
+        <div class="lg"><div class="v">5.4M+</div><div class="t">Vistas orgánicas</div><div class="p">Suma de la campaña, sin pauta</div></div>
+        <div class="lg"><div class="v">4</div><div class="t">Piezas FOOH</div><div class="p">Misma marca, campaña sostenida</div></div>
+        <div class="lg"><div class="v">Prensa</div><div class="t">Cobertura en medios</div><div class="p">REEMPLAZAR: nombres de los medios</div></div>
+        <div class="lg"><div class="v">0</div><div class="t">Proveedores externos</div><div class="p">Concepto, CGI y rodaje propios</div></div>
+      </div>
+
+      <div class="fooh-grid">
+        <figure class="fooh"><video src="assets/eleden-1.mp4" poster="assets/eleden-1-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video><figcaption>eleden-1.mp4</figcaption></figure>
+        <figure class="fooh"><video src="assets/eleden-2.mp4" poster="assets/eleden-2-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video><figcaption>eleden-2.mp4</figcaption></figure>
+        <figure class="fooh"><video src="assets/eleden-3.mp4" poster="assets/eleden-3-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video><figcaption>eleden-3.mp4</figcaption></figure>
+        <figure class="fooh"><video src="assets/eleden-4.mp4" poster="assets/eleden-4-poster.jpg" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video><figcaption>eleden-4.mp4</figcaption></figure>
+      </div>
+
+      <p class="sub" style="margin-top:30px;margin-bottom:0;">Salió en prensa:</p>
+      <div class="prensa">
+        <a class="pr" href="#" target="_blank" rel="noopener"><img src="assets/prensa-1.jpg" alt="Nota de prensa"></a>
+        <a class="pr" href="#" target="_blank" rel="noopener"><img src="assets/prensa-2.jpg" alt="Nota de prensa"></a>
+        <a class="pr" href="#" target="_blank" rel="noopener"><img src="assets/prensa-3.jpg" alt="Nota de prensa"></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="nodos">
+  <div class="wrap reveal">
+    <div class="eyebrow">SERVICIO DE COLOR — CÓMO QUEDA</div>
+    <h2>El mismo plano, en las tres etapas.</h2>
+    <p class="sub">Así se ve mi árbol de nodos por dentro. Haz clic en cada uno para ver en qué cambia la imagen.</p>
+    <div class="nodos">
+      <button class="nodo on" data-nodo="assets/nodo-log.jpg"><span class="nn">01</span><span class="nl">LOG</span></button>
+      <span class="cable"></span>
+      <button class="nodo" data-nodo="assets/nodo-camara.jpg"><span class="nn">02</span><span class="nl">CÁMARA</span></button>
+      <span class="cable"></span>
+      <button class="nodo" data-nodo="assets/nodo-final.jpg"><span class="nn">03</span><span class="nl">FINAL</span></button>
+    </div>
+    <div class="nodo-stage">
+      <img id="nodoImg" src="assets/nodo-log.jpg" alt="Etapa de color">
+    </div>
+  </div>
+</section>
+
+<section id="color">
+  <div class="wrap reveal">
+    <div class="eyebrow">ANTES / DESPUÉS — COLOR</div>
+    <h2>Arrastra para comparar el grading.</h2>
+    <p class="sub">Pipeline real: YRGB → CineMatch → PowerGrades → Dehancer → emulación de impresión Kodak 2383/2393 → Rec.709.</p>
+    <div class="cw" id="cw">
+      <img class="cw-img" src="assets/color-despues.jpg" alt="Después del grading">
+      <img class="cw-img cw-before" id="cwBefore" src="assets/color-antes.jpg" alt="Antes del grading">
+      <div class="cw-handle" id="cwHandle"></div>
+      <input type="range" min="0" max="100" value="50" class="cw-range" id="cwRange" aria-label="Comparar antes y después">
+    </div>
+    <p class="sub" style="margin-top:16px;margin-bottom:0;">Placeholder funcional — se reemplaza por tu par de imágenes real (RAW vs. grade final).</p>
+  </div>
+</section>
+
+
+<section id="drone">
+  <div class="wrap reveal">
+    <div class="eyebrow">SERVICIO DE DRONE</div>
+    <h2>Piloto y equipo propios. Sin alquiler, sin intermediarios.</h2>
+    <p class="sub">Mavic 3 Pro para tomas cinematográficas y Avata 2 para FPV. Elige una toma para verla.</p>
+    <div class="sel" data-selector data-auto="1">
+      <div class="sel-list">
+        <button class="sel-btn" data-vid="assets/drone-1.mp4" data-poster="assets/drone-1-poster.jpg" data-hud="MAVIC 3 PRO · CINEMÁTICO">
+          <span class="num">01</span><span><span class="tt">Aéreo cinematográfico</span><span class="dd">Movimientos amplios y estables con Mavic 3 Pro.</span></span>
+        </button>
+        <button class="sel-btn" data-vid="assets/drone-2.mp4" data-poster="assets/drone-2-poster.jpg" data-hud="AVATA 2 · FPV">
+          <span class="num">02</span><span><span class="tt">FPV</span><span class="dd">Vuelo agresivo en interiores y proximidad con Avata 2.</span></span>
+        </button>
+        <button class="sel-btn" data-vid="assets/drone-3.mp4" data-poster="assets/drone-3-poster.jpg" data-hud="REVELADO / ESTABLECIMIENTO">
+          <span class="num">03</span><span><span class="tt">Plano de revelado</span><span class="dd">Apertura de escena para abrir una pieza o campaña.</span></span>
+        </button>
+      </div>
+      <div class="sel-stage">
+        <video data-stage muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video>
+        <span class="sel-hud" data-hudout></span>
+        <span class="sel-auto" data-autoout>RECORRIENDO — elige una toma</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="inmersivo">
+  <div class="wrap reveal">
+    <div class="eyebrow">TOMA INMERSIVA — INSTA360</div>
+    <h2>Mira alrededor mientras grabo.</h2>
+    <p class="sub">Arrastra sobre la imagen para rotar el ángulo.</p>
+    <div class="pano" id="pano">
+      <img class="pano-track" id="panoTrack" src="assets/pano-360.jpg" alt="Vista 360 del set" draggable="false">
+      <div class="pano-hud" id="panoHud">ARRASTRA — 0°</div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="logros">
+  <div class="wrap reveal">
+    <div class="eyebrow">RESULTADOS EN NÚMEROS</div>
+    <h2>Storytelling que se mide en vistas, no en opiniones.</h2>
+    <p class="sub">Piezas que funcionaron de forma orgánica. Reemplaza las cifras marcadas por tus números reales de Instagram.</p>
+    <div class="logros">
+      <div class="lg tex"><div class="v">5.4M+</div><div class="t">Jurassic El Edén</div><div class="p">Campaña FOOH · orgánico</div></div>
+      <div class="lg tex"><div class="v">REEMPLAZAR</div><div class="t">Pieza más vista</div><div class="p">Pásame el número y el proyecto</div></div>
+      <div class="lg tex"><div class="v">REEMPLAZAR</div><div class="t">Vistas acumuladas</div><div class="p">Suma de tus entregas</div></div>
+      <div class="lg tex"><div class="v">REEMPLAZAR</div><div class="t">Mejor retención</div><div class="p">Porcentaje de un reel tuyo</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="plugins">
+  <div class="wrap reveal">
+    <div class="eyebrow">QUÉ GANAS TRABAJANDO CONMIGO</div>
+    <h2>Construí mis propias herramientas. Tú ves el resultado.</h2>
+    <p class="sub">Programé seis herramientas para mi propio flujo de trabajo. No te van a interesar por dentro — lo que te interesa es lo que cambian en tu entrega.</p>
+
+    <div class="creds-panel tex">
+      <div class="creds-txt">
+        <div class="eyebrow" style="margin-bottom:10px;">POR QUÉ PUEDO HACER TODO ESTO</div>
+        <h3 class="creds-h">La formación no es decoración: es la razón de que el pipeline exista.</h3>
+        <p class="creds-p">Producción audiovisual da el oficio. La ingeniería y la programación son por qué puedo construir las herramientas con las que edito en vez de esperar a que alguien las haga. Las matemáticas son por qué el color y la integración 3D salen bien a la primera.</p>
+      </div>
+      <div class="creds-list">
+        <span class="cred"><b>Producción audiovisual</b></span>
+        <span class="cred"><b>Ingeniería electrónica</b> · COPNIA activa</span>
+        <span class="cred"><b>Programación</b></span>
+        <span class="cred"><b>Matemáticas</b></span>
+      </div>
+    </div>
+
+    <div class="plug-grid">
+      <div class="plug tex" data-tilt>
+        <div class="pn">Subtítulos sin esperas</div>
+        <div class="pd">Tus videos salen subtitulados y traducidos el mismo día, no tres días después. Si necesitas la pieza en otro idioma para otro mercado, no cuesta un proceso aparte.</div>
+        <div class="ps">Entregas el mismo día</div>
+      </div>
+      <div class="plug tex" data-tilt>
+        <div class="pn">Nada se queda en el disco</div>
+        <div class="pd">Todo el material grabado queda revisado y clasificado, no solo lo que alcanzó a mirar el editor. Pagas un rodaje y se aprovecha completo.</div>
+        <div class="ps">Se usa todo lo que pagaste</div>
+      </div>
+      <div class="plug tex" data-tilt>
+        <div class="pn">Movimiento con intención</div>
+        <div class="pd">Los acercamientos caen donde la persona dice algo que importa, no cada cinco segundos porque sí. Se siente editado por alguien, no por un robot.</div>
+        <div class="ps">Retención, no mareo</div>
+      </div>
+      <div class="plug tex" data-tilt>
+        <div class="pn">Audio que nadie tiene que subir</div>
+        <div class="pd">El volumen queda parejo entre voz, música y efectos, y al nivel que exigen Instagram, YouTube y TikTok. Tu audiencia no tiene que tocar el control.</div>
+        <div class="ps">Listo para cada plataforma</div>
+      </div>
+      <div class="plug tex" data-tilt>
+        <div class="pn">Treinta piezas, un solo pedido</div>
+        <div class="pd">Pides la campaña completa y llega completa, cada pieza nombrada y ordenada. Sin ir reclamando videos sueltos durante la semana.</div>
+        <div class="ps">Entregas en bloque</div>
+      </div>
+      <div class="plug tex" data-tilt>
+        <div class="pn">Consistencia en toda la campaña</div>
+        <div class="pd">La pieza número treinta se ve igual de cuidada que la primera. Tu marca no se degrada cuando sube el volumen.</div>
+        <div class="ps">Mismo acabado siempre</div>
+      </div>
+    </div>
+    <div class="flag">
+      <div>
+        <div class="mono">AJUSTA LAS CIFRAS</div>
+        <p>La línea naranja de cada tarjeta puede llevar un número concreto en vez de una frase. Pásame cuánto te tomaba antes y cuánto ahora ("8 h → 40 min") y lo cambio: un número siempre convence más.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="clientes">
+  <div class="wrap reveal">
+    <div class="eyebrow">MARCAS E INFOPRODUCTORES QUE CONFIARON</div>
+    <h2>Con quién trabajo.</h2>
+    <p class="sub">Perfiles reales de los clientes con los que hay relación activa.</p>
+    <div class="socials">
+      <a href="https://instagram.com/silviarubio.m" target="_blank" rel="noopener" class="sp tex" data-tilt>
+        <div class="sp-head"><div class="sp-av"><img src="assets/ig-silvia.jpg" alt=""></div><div class="sp-id"><div class="h">@silviarubio.m</div><div class="n">The Glow — infoproducto</div></div></div>
+        <div class="sp-stats"><div class="sp-stat"><div class="v">VSL</div><div class="l">motion graphics</div></div><div class="sp-stat"><div class="v">Activo</div><div class="l">estado</div></div></div>
+        <div class="sp-foot"><span>Ver perfil</span><span>↗</span></div>
+      </a>
+      <a href="https://www.instagram.com/mariasalazar.magnetica/" class="sp tex" data-tilt>
+        <div class="sp-head"><div class="sp-av"><img src="assets/ig-maria.jpg" alt=""></div><div class="sp-id"><div class="h">María Salazar</div><div class="n">Infoproductora</div></div></div>
+        <div class="sp-stats"><div class="sp-stat"><div class="v">Ads · VSL</div><div class="l">servicio</div></div><div class="sp-stat"><div class="v">Recurrente</div><div class="l">estado</div></div></div>
+        <div class="sp-foot"><span>Falta enlace</span><span>↗</span></div>
+      </a>
+      <a href="#" class="sp tex" data-tilt>
+        <div class="sp-head"><div class="sp-av"><img src="assets/ig-nova.jpg" alt=""></div><div class="sp-id"><div class="h">Sistema Nova</div><div class="n">Retainer europeo</div></div></div>
+        <div class="sp-stats"><div class="sp-stat"><div class="v">VSL</div><div class="l">servicio</div></div><div class="sp-stat"><div class="v">Multianual</div><div class="l">duración</div></div></div>
+        <div class="sp-foot"><span>Falta enlace</span><span>↗</span></div>
+      </a>
+      <a href="#" class="sp tex" data-tilt>
+        <div class="sp-head"><div class="sp-av"><img src="assets/ig-novaagencia.jpg" alt=""></div><div class="sp-id"><div class="h">Nova Agencia</div><div class="n">Clientes top de infoproducto</div></div></div>
+        <div class="sp-stats"><div class="sp-stat"><div class="v">Pipeline</div><div class="l">relación</div></div><div class="sp-stat"><div class="v">Activo</div><div class="l">estado</div></div></div>
+        <div class="sp-foot"><span>Falta enlace</span><span>↗</span></div>
+      </a>
+      <a href="#" class="sp tex" data-tilt>
+        <div class="sp-head"><div class="sp-av"><img src="assets/ig-javi.jpg" alt=""></div><div class="sp-id"><div class="h">Javi Reelve</div><div class="n">Ads y VSL</div></div></div>
+        <div class="sp-stats"><div class="sp-stat"><div class="v">Ads</div><div class="l">servicio</div></div><div class="sp-stat"><div class="v">Activo</div><div class="l">estado</div></div></div>
+        <div class="sp-foot"><span>Falta enlace</span><span>↗</span></div>
+      </a>
+      <a href="#" class="sp tex" data-tilt>
+        <div class="sp-head"><div class="sp-av"><img src="assets/ig-eleden.jpg" alt=""></div><div class="sp-id"><div class="h">CC El Edén</div><div class="n">Centro comercial</div></div></div>
+        <div class="sp-stats"><div class="sp-stat"><div class="v">5.4M+</div><div class="l">vistas</div></div><div class="sp-stat"><div class="v">CGI/FOOH</div><div class="l">servicio</div></div></div>
+        <div class="sp-foot"><span>Falta enlace</span><span>↗</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="equipo">
+  <div class="wrap reveal">
+    <div class="eyebrow">EQUIPO PROPIO</div>
+    <h2>Nada se subcontrata.</h2>
+    <p class="sub">Cámara, drones, grip y estación de trabajo propios — el rodaje no depende de alquiler ni de terceros.</p>
+    <div class="marcas">
+      <a class="mc" href="https://www.panasonic.com/global/consumer/lumix.html" target="_blank" rel="noopener"><img src="assets/logo-panasonic.png" alt="panasonic"><span class="md">LUMIX S1 II · GH6</span></a>
+      <a class="mc" href="https://www.dji.com/mavic-3-pro" target="_blank" rel="noopener"><img src="assets/logo-dji.png" alt="dji"><span class="md">MAVIC 3 PRO · AVATA 2</span></a>
+      <a class="mc" href="https://www.blackmagicdesign.com/products/blackmagicvideoassist" target="_blank" rel="noopener"><img src="assets/logo-blackmagic.png" alt="blackmagic"><span class="md">VIDEO ASSIST 12G</span></a>
+      <a class="mc" href="https://www.insta360.com/" target="_blank" rel="noopener"><img src="assets/logo-insta360.png" alt="insta360"><span class="md">CAPTURA 360°</span></a>
+      <a class="mc" href="https://www.sigma-global.com/en/lenses/" target="_blank" rel="noopener"><img src="assets/logo-sigma.png" alt="sigma"><span class="md">24mm f/1.4 ART</span></a>
+      <a class="mc" href="https://www.sirui.com/" target="_blank" rel="noopener"><img src="assets/logo-sirui.png" alt="sirui"><span class="md">AURORA 85mm f/1.4</span></a>
+      <a class="mc" href="https://www.panasonic.com/global/consumer/lumix/lumix_g_lenses.html" target="_blank" rel="noopener"><img src="assets/logo-leica.png" alt="leica"><span class="md">DG 12-35mm f/2.8</span></a>
+      <a class="mc" href="https://www.blackmagicdesign.com/products/davinciresolve" target="_blank" rel="noopener"><img src="assets/logo-davinci.png" alt="davinci"><span class="md">STUDIO · ACES 2.0</span></a>
+      <a class="mc" href="https://www.adobe.com/products/aftereffects.html" target="_blank" rel="noopener"><img src="assets/logo-aftereffects.png" alt="aftereffects"><span class="md">VFX · MOTION</span></a>
+      <a class="mc" href="https://www.sidefx.com/products/houdini/" target="_blank" rel="noopener"><img src="assets/logo-houdini.png" alt="houdini"><span class="md">SIMULACIONES</span></a>
+    </div>
+
+    <p class="sub" style="margin-top:38px;">Making of — espacios listos para tus fotos reales:</p>
+    <div class="slots">
+      <figure class="slot wig" data-tilt><video class="slot-vid" src="assets/makingof-drone.mp4" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video><img src="assets/makingof-drone.jpg" alt="Volando drone en locación"><figcaption class="mono">assets/makingof-drone.jpg</figcaption></figure>
+      <figure class="slot wig-b" data-tilt><video class="slot-vid" src="assets/makingof-camara.mp4" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video><img src="assets/makingof-camara.jpg" alt="Cámara en mano durante rodaje"><figcaption class="mono">assets/makingof-camara.jpg</figcaption></figure>
+      <figure class="slot wig-c" data-tilt><video class="slot-vid" src="assets/makingof-set.mp4" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video><img src="assets/makingof-set.jpg" alt="Set general"><figcaption class="mono">assets/makingof-set.jpg</figcaption></figure>
+      <figure class="slot wig" data-tilt><video class="slot-vid" src="assets/makingof-gear.mp4" muted loop playsinline disablepictureinpicture controlslist="nodownload noplaybackrate" preload="none"></video><img src="assets/makingof-gear.jpg" alt="Equipo completo"><figcaption class="mono">assets/makingof-gear.jpg</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+
+<section id="assets">
+  <div class="wrap reveal">
+    <div class="eyebrow">GUÍA DE REEMPLAZO</div>
+    <h2>Qué archivo va en cada lugar.</h2>
+    <p class="sub">Todo lo que ves ahora son referencias generadas. Reemplaza cada archivo en la carpeta <span class="mono">assets/</span> conservando el nombre exacto y el sitio se actualiza solo — sin tocar código.</p>
+    <div class="assets-wrap">
+      <table class="assets-tbl">
+        <thead><tr><th>ARCHIVO</th><th>MEDIDA SUGERIDA</th><th>DÓNDE APARECE</th></tr></thead>
+        <tbody>
+      <tr><td class="f">assets/reel-principal.mp4</td><td class="d">1920×1080 · 60-90s</td><td>Reel principal del hero de la sección Reel. Autoplay en loop, sin audio.</td></tr>
+      <tr><td class="f">assets/caso-ads.mp4</td><td class="d">1080×1350 · 15-30s</td><td>Caso vertical de ads/VSL. Se reproduce al pasar el mouse.</td></tr>
+      <tr><td class="f">assets/caso-fooh.mp4</td><td class="d">1080×1350 · 15-30s</td><td>Caso vertical de CGI/FOOH.</td></tr>
+      <tr><td class="f">assets/caso-extra.mp4</td><td class="d">1080×1350 · 15-30s</td><td>Tercer caso vertical (crea este archivo).</td></tr>
+      <tr><td class="f">assets/antonio-headshot.png</td><td class="d">1080×1350</td><td>Tu foto del hero. Conviértela a .webp para bajar el peso.</td></tr>
+      <tr><td class="f">assets/work-eleden.jpg</td><td class="d">1200×675</td><td>Tarjeta grande de Jurassic El Edén.</td></tr>
+      <tr><td class="f">assets/work-maria.jpg</td><td class="d">800×800</td><td>Tarjeta de María Salazar.</td></tr>
+      <tr><td class="f">assets/work-nova.jpg</td><td class="d">800×800</td><td>Tarjeta de Sistema Nova.</td></tr>
+      <tr><td class="f">assets/work-novaagencia.jpg</td><td class="d">800×600</td><td>Tarjeta de Nova Agencia.</td></tr>
+      <tr><td class="f">assets/work-theglow.jpg</td><td class="d">800×600</td><td>Tarjeta de The Glow.</td></tr>
+      <tr><td class="f">assets/work-nicolas.jpg</td><td class="d">800×600</td><td>Tarjeta de Nicolás Lara.</td></tr>
+      <tr><td class="f">assets/color-antes.jpg</td><td class="d">1600×900</td><td>Frame SIN gradear del comparador. Mismo encuadre que el después.</td></tr>
+      <tr><td class="f">assets/color-despues.jpg</td><td class="d">1600×900</td><td>Frame gradeado. Debe ser el mismo frame exacto.</td></tr>
+      <tr><td class="f">assets/pano-360.jpg</td><td class="d">3200×900</td><td>Panorámica equirectangular del Insta360, formato tira horizontal.</td></tr>
+      <tr><td class="f">assets/makingof-drone.jpg</td><td class="d">900×1200</td><td>Vertical volando drone.</td></tr>
+      <tr><td class="f">assets/makingof-camara.jpg</td><td class="d">900×1200</td><td>Vertical con cámara en mano.</td></tr>
+      <tr><td class="f">assets/makingof-set.jpg</td><td class="d">1200×900</td><td>Set general.</td></tr>
+      <tr><td class="f">assets/makingof-gear.jpg</td><td class="d">1200×900</td><td>Flatlay del equipo.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="flag">
+      <div>
+        <div class="mono">ANTES DE PUBLICAR</div>
+        <p>Cambia también tu correo y tu número de WhatsApp en los botones de contacto, y los enlaces de cada cliente en las tarjetas de trabajo. Esta sección se borra antes de subir el sitio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contacto">
+  <div class="wrap reveal">
+    <h3>Cuéntame qué necesitas resolver. Te respondo con un plan, no con un catálogo.</h3>
+    <div class="btn-row">
+      <a href="mailto:tucorreo@ejemplo.com?subject=Colaboraci%C3%B3n%20%E2%80%94%20portafolio" class="btn">Escríbeme</a>
+      <a href="https://wa.me/573505059962" target="_blank" rel="noopener" class="btn btn-ghost">WhatsApp</a>
+      <a href="https://www.behance.net/MoonToons" target="_blank" rel="noopener" class="btn btn-ghost">Behance</a>
+      <a href="https://instagram.com/antoine.vfx" target="_blank" rel="noopener" class="btn btn-ghost">Instagram</a>
+      <a href="https://www.linkedin.com/in/enrique-antonio-cepeda-vargas-3a7674208" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+    </div>
+    <div class="foot-meta">
+      <span>Enrique Antonio Cepeda Vargas — Bogotá, Colombia</span>
+      <span><a href="https://instagram.com/antoine.vfx" target="_blank" rel="noopener">@antoine.vfx</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal-bg" data-cerrar></div>
+  <div class="modal-box" role="dialog" aria-modal="true">
+    <button class="modal-x" data-cerrar aria-label="Cerrar">✕</button>
+    <div class="modal-media"><video id="mVid" controls playsinline></video></div>
+    <div class="modal-info">
+      <div class="modal-tag" id="mTag"></div>
+      <h3 id="mTitulo"></h3>
+      <p id="mDesc"></p>
+      <div class="modal-metric" id="mMetric"></div>
+      <a class="btn" id="mLink" href="#contacto">Quiero algo así</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
