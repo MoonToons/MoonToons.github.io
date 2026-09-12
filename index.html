@@ -3,268 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Enrique Antonio Cepeda — Filmmaker · Editor · VFX</title>
+<title>Enrique Antonio — Filmmaker · Editor · VFX</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0F0D10;
-    --surface:#1A1614;
-    --surface2:#211B17;
-    --line:#2E2721;
-    --text:#F2EAE0;
-    --muted:#9C9086;
-    --halation:#DD4B24;
-    --grain:#6B7A78;
-    --maxw:1240px;
-  }
-  html{scroll-behavior:smooth;}
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{
-    background:var(--bg);color:var(--text);
-    font-family:'Inter',sans-serif;line-height:1.55;
-    -webkit-font-smoothing:antialiased;overflow-x:hidden;
-  }
-  a{color:inherit;text-decoration:none;}
-  img{max-width:100%;display:block;}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,4vw,40px);}
-  .mono{font-family:'JetBrains Mono',monospace;}
-
-  /* ---- film grain ---- */
-  .grain{position:fixed;inset:-50%;pointer-events:none;opacity:.11;mix-blend-mode:overlay;z-index:60;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size:170px 170px;animation:gf .48s steps(5) infinite;}
-  @keyframes gf{0%{transform:translate(0,0)}20%{transform:translate(-2%,1.5%)}40%{transform:translate(1.5%,-2%)}60%{transform:translate(-1.5%,2%)}80%{transform:translate(2%,-1%)}100%{transform:translate(0,0)}}
-  .vignette{position:fixed;inset:0;pointer-events:none;z-index:55;
-    background:radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.45) 100%);}
-
-  /* ---- custom cursor ---- */
-  .cursor{position:fixed;top:0;left:0;width:26px;height:26px;border:1px solid var(--halation);border-radius:50%;
-    pointer-events:none;z-index:70;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s,opacity .2s;
-    mix-blend-mode:difference;}
-  .cursor.big{width:64px;height:64px;background:rgba(221,75,36,.16);}
-  .cursor.hidden{opacity:0;}
-  @media (pointer:coarse){.cursor{display:none;}}
-
-  /* ---- header ---- */
-  header{position:sticky;top:0;z-index:40;background:rgba(15,13,16,.8);backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--line);}
-  nav.wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px;}
-  .brand{font-family:'Fraunces',serif;font-weight:600;font-size:16px;line-height:1.15;white-space:nowrap;}
-  .brand span{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:1px;}
-  .navlinks{display:flex;gap:24px;font-size:13.5px;color:var(--muted);}
-  .navlinks a{position:relative;padding:3px 0;}
-  .navlinks a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--halation);transition:width .28s cubic-bezier(.2,.7,.3,1);}
-  .navlinks a:hover{color:var(--text);}
-  .navlinks a:hover::after{width:100%;}
-  .btn{display:inline-block;border:1px solid var(--halation);color:var(--halation);padding:9px 17px;border-radius:2px;
-    font-family:'JetBrains Mono',monospace;font-size:12.5px;transition:background .25s,color .25s,transform .15s;will-change:transform;}
-  .btn:hover{background:var(--halation);color:#0F0D10;}
-  .btn-ghost{border-color:var(--line);color:var(--muted);}
-  .btn-ghost:hover{background:transparent;border-color:var(--text);color:var(--text);}
-  .btn-row{display:flex;gap:12px;flex-wrap:wrap;}
-  .navtoggle{display:none;background:none;border:1px solid var(--line);color:var(--text);padding:7px 11px;border-radius:2px;font-size:13px;}
-
-  /* ---- hero ---- */
-  .hero{position:relative;border-bottom:1px solid var(--line);overflow:hidden;}
-  #lensCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
-  .hero .wrap{position:relative;z-index:2;padding-top:clamp(64px,9vw,104px);padding-bottom:clamp(44px,6vw,64px);}
-  .hero-grid{display:grid;grid-template-columns:1.45fr .75fr;gap:clamp(24px,4vw,48px);align-items:end;}
-  .status{display:inline-flex;gap:9px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11.5px;
-    color:var(--grain);border:1px solid var(--line);padding:6px 12px;border-radius:100px;margin-bottom:24px;}
-  .dot{width:6px;height:6px;border-radius:50%;background:var(--grain);box-shadow:0 0 9px var(--grain);animation:pulse 2.4s ease-in-out infinite;}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-  h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(32px,5.6vw,58px);line-height:1.05;letter-spacing:-.015em;max-width:14ch;}
-  h1 .em{color:var(--halation);}
-  .lede{margin-top:22px;font-size:clamp(15px,1.5vw,17px);color:var(--muted);max-width:56ch;}
-  .hero-cta{margin-top:30px;}
-  .hero-photo{border-radius:3px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/5;
-    transition:transform .18s ease-out;will-change:transform;box-shadow:0 30px 70px -30px rgba(221,75,36,.35);}
-  .hero-photo img{width:100%;height:100%;object-fit:cover;}
-
-  /* ---- marquee ---- */
-  .marquee{border-bottom:1px solid var(--line);overflow:hidden;padding:14px 0;background:var(--surface);}
-  .marquee-track{display:flex;gap:48px;white-space:nowrap;animation:slide 34s linear infinite;
-    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);}
-  .marquee-track span{display:inline-flex;gap:48px;}
-  .marquee em{color:var(--halation);font-style:normal;}
-  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-  /* ---- proof strip ---- */
-  .proof{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line);}
-  .proof-item{padding:clamp(20px,3vw,30px) clamp(14px,2vw,24px);border-right:1px solid var(--line);}
-  .proof-item:last-child{border-right:none;}
-  .proof-item .n{font-family:'JetBrains Mono',monospace;font-size:clamp(22px,3vw,30px);color:var(--halation);line-height:1;}
-  .proof-item .c{font-size:12px;color:var(--muted);margin-top:8px;}
-
-  /* ---- sections ---- */
-  section{padding:clamp(52px,7vw,84px) 0;border-bottom:1px solid var(--line);}
-  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--grain);margin-bottom:14px;}
-  h2{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(23px,3vw,31px);letter-spacing:-.01em;max-width:20ch;margin-bottom:10px;}
-  .sub{font-size:14px;color:var(--muted);max-width:62ch;margin-bottom:38px;}
-
-  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1);}
-  .reveal.in{opacity:1;transform:none;}
-
-  /* ---- work grid (protagonist) ---- */
-  .work-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;}
-  .work{position:relative;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--surface);
-    display:flex;flex-direction:column;justify-content:flex-end;padding:20px;min-height:230px;
-    transition:transform .2s ease-out,border-color .3s;will-change:transform;}
-  .work:hover{border-color:var(--halation);}
-  .work.lg{grid-column:span 4;min-height:340px;}
-  .work.md{grid-column:span 2;}
-  .work.sm{grid-column:span 2;}
-  .work-bg{position:absolute;inset:0;opacity:.9;transition:transform .6s cubic-bezier(.2,.7,.3,1);}
-  .work:hover .work-bg{transform:scale(1.06);}
-  .work-body{position:relative;z-index:2;}
-  .work .tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--halation);margin-bottom:8px;}
-  .work h3{font-family:'Fraunces',serif;font-size:clamp(17px,2vw,22px);margin-bottom:6px;}
-  .work p{font-size:12.5px;color:var(--muted);max-width:42ch;}
-  .work .metric{margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text);
-    border-top:1px solid rgba(242,234,224,.16);padding-top:10px;display:inline-block;}
-  .work .go{position:absolute;top:16px;right:16px;z-index:2;font-family:'JetBrains Mono',monospace;font-size:11px;
-    color:var(--muted);opacity:0;transform:translateY(-4px);transition:.3s;}
-  .work:hover .go{opacity:1;transform:none;color:var(--halation);}
-
-  /* ---- capability cards ---- */
-  .caps{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);perspective:1000px;}
-  .cap{background:var(--bg);padding:22px 18px;transition:transform .18s ease-out,background .3s;will-change:transform;}
-  .cap:hover{background:var(--surface);}
-  .cap .icon{width:26px;height:26px;color:var(--halation);margin-bottom:14px;}
-  .cap .tag{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--halation);margin-bottom:8px;}
-  .cap h3{font-family:'Fraunces',serif;font-size:16px;margin-bottom:7px;}
-  .cap p{font-size:12.5px;color:var(--muted);}
-
-  /* ---- process ---- */
-  .process{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
-  .pstep{background:var(--bg);padding:20px 15px;transition:background .3s;}
-  .pstep:hover{background:var(--surface);}
-  .pstep .n{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--halation);margin-bottom:12px;}
-  .pstep .picon{width:22px;height:22px;color:var(--muted);margin-bottom:10px;}
-  .pstep:hover .picon{color:var(--halation);}
-  .pstep h4{font-family:'Fraunces',serif;font-size:14.5px;margin-bottom:6px;}
-  .pstep p{font-size:11.5px;color:var(--muted);}
-
-  /* ---- before/after ---- */
-  .cw{position:relative;width:100%;aspect-ratio:16/9;border-radius:3px;overflow:hidden;border:1px solid var(--line);user-select:none;}
-  .cw-layer{position:absolute;inset:0;display:flex;align-items:flex-end;padding:18px;font-family:'JetBrains Mono',monospace;font-size:11.5px;}
-  .cw-after{background:linear-gradient(135deg,#241B14,#3A2A1C 45%,#6B4226 100%);color:#F2C89A;}
-  .cw-before{background:linear-gradient(135deg,#2A2A2E,#3E3E42 45%,#57575C 100%);color:#D8D8DC;clip-path:inset(0 50% 0 0);}
-  .cw-handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--halation);transform:translateX(-1px);pointer-events:none;}
-  .cw-handle::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;
-    background:var(--halation);border-radius:50%;box-shadow:0 0 24px rgba(221,75,36,.6);}
-  .cw-handle::before{content:"◂ ▸";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;
-    color:#0F0D10;font-size:11px;font-family:'JetBrains Mono',monospace;}
-  .cw-range{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0;}
-
-  /* ---- 360 pano ---- */
-  .pano{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:3px;border:1px solid var(--line);cursor:grab;background:var(--surface);}
-  .pano.dragging{cursor:grabbing;}
-  .pano-track{position:absolute;top:0;left:0;height:100%;width:300%;display:flex;}
-  .pano-band{flex:0 0 25%;height:100%;display:flex;align-items:flex-end;padding:18px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:rgba(242,234,224,.75);}
-  .pano-hud{position:absolute;top:14px;left:14px;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--text);
-    background:rgba(15,13,16,.6);padding:6px 11px;border-radius:2px;pointer-events:none;}
-
-  /* ---- client social panels ---- */
-  .socials{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-  .sp{border:1px solid var(--line);border-radius:4px;background:var(--surface);overflow:hidden;transition:border-color .3s,transform .2s ease-out;will-change:transform;}
-  .sp:hover{border-color:var(--halation);}
-  .sp-head{display:flex;gap:14px;align-items:center;padding:18px;}
-  .sp-av{width:52px;height:52px;border-radius:50%;flex:0 0 52px;background:linear-gradient(135deg,#6B4226,#DD4B24);
-    display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:19px;color:#0F0D10;}
-  .sp-id .h{font-weight:600;font-size:14px;}
-  .sp-id .n{font-size:12px;color:var(--muted);margin-top:1px;}
-  .sp-stats{display:flex;border-top:1px solid var(--line);}
-  .sp-stat{flex:1;padding:12px 10px;text-align:center;border-right:1px solid var(--line);}
-  .sp-stat:last-child{border-right:none;}
-  .sp-stat .v{font-family:'JetBrains Mono',monospace;font-size:13.5px;color:var(--text);}
-  .sp-stat .l{font-size:10.5px;color:var(--muted);margin-top:2px;}
-  .sp-foot{padding:12px 18px;border-top:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);
-    display:flex;justify-content:space-between;align-items:center;}
-  .sp:hover .sp-foot{color:var(--halation);}
-
-  /* ---- gear wordmarks ---- */
-  .gear{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
-  .gcell{background:var(--bg);padding:24px 14px;text-align:center;transition:background .3s;}
-  .gcell:hover{background:var(--surface);}
-  .gcell .wm{font-family:'Fraunces',serif;font-size:15px;letter-spacing:.02em;color:var(--text);}
-  .gcell:hover .wm{color:var(--halation);}
-  .gcell .md{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-top:5px;}
-
-  /* ---- media slots ---- */
-  .slots{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
-  .slot{aspect-ratio:3/4;border:1px dashed var(--line);border-radius:3px;background:var(--surface);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;transition:border-color .3s;}
-  .slot:hover{border-color:var(--halation);}
-  .slot .ic{width:24px;height:24px;color:var(--muted);}
-  .slot .mono{font-size:10.5px;color:var(--muted);text-align:center;padding:0 12px;}
-
-  /* ---- pending flag ---- */
-  .flag{margin-top:34px;padding:20px 22px;border:1px solid #8C4A3A;border-radius:3px;
-    display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
-  .flag .mono{font-size:11px;color:#C77A63;}
-  .flag p{font-size:13.5px;color:var(--muted);max-width:60ch;margin-top:4px;}
-
-  /* ---- footer ---- */
-  footer{padding:clamp(52px,7vw,80px) 0 44px;}
-  footer h3{font-family:'Fraunces',serif;font-size:clamp(22px,3vw,29px);max-width:22ch;margin-bottom:26px;}
-  .foot-meta{margin-top:48px;padding-top:22px;border-top:1px solid var(--line);
-    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
-  .foot-meta a:hover{color:var(--halation);}
-
-  /* ---- responsive ---- */
-  @media(max-width:1000px){
-    .work-grid{grid-template-columns:repeat(4,1fr);}
-    .work.lg{grid-column:span 4;}
-    .work.md,.work.sm{grid-column:span 2;}
-    .caps{grid-template-columns:repeat(3,1fr);}
-    .process{grid-template-columns:repeat(3,1fr);}
-    .gear{grid-template-columns:repeat(3,1fr);}
-    .socials{grid-template-columns:repeat(2,1fr);}
-    .slots{grid-template-columns:repeat(2,1fr);}
-  }
-  @media(max-width:720px){
-    .navlinks{display:none;}
-    .navtoggle{display:block;}
-    .navlinks.open{display:flex;position:absolute;top:68px;left:0;right:0;background:var(--bg);
-      flex-direction:column;gap:0;border-bottom:1px solid var(--line);}
-    .navlinks.open a{padding:15px clamp(20px,4vw,40px);border-top:1px solid var(--line);}
-    .hero-grid{grid-template-columns:1fr;}
-    .hero-photo{max-width:210px;}
-    .proof{grid-template-columns:repeat(2,1fr);}
-    .proof-item:nth-child(2){border-right:none;}
-    .proof-item:nth-child(1),.proof-item:nth-child(2){border-bottom:1px solid var(--line);}
-    .work-grid{grid-template-columns:1fr;}
-    .work.lg,.work.md,.work.sm{grid-column:span 1;}
-    .caps{grid-template-columns:repeat(2,1fr);}
-    .process{grid-template-columns:repeat(2,1fr);}
-    .gear{grid-template-columns:repeat(2,1fr);}
-    .socials{grid-template-columns:1fr;}
-    .slots{grid-template-columns:repeat(2,1fr);}
-  }
-  @media(prefers-reduced-motion:reduce){
-    *{animation:none!important;transition:none!important;}
-    .reveal{opacity:1;transform:none;}
-  }
-  :focus-visible{outline:2px solid var(--halation);outline-offset:3px;}
-</style>
+<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<div class="grain"></div>
+<canvas id="grainCanvas"></canvas>
 <div class="vignette"></div>
 <div class="cursor" id="cursor"></div>
 
 <header>
   <nav class="wrap">
-    <a href="#top" class="brand">Enrique Antonio Cepeda<span>@antoine.vfx — Bogotá, CO</span></a>
+    <a href="#top" class="brand">Enrique Antonio <span>@antoine.vfx — Bogotá, CO</span></a>
     <div class="navlinks" id="navlinks">
       <a href="#trabajo">Trabajo</a>
       <a href="#capacidades">Capacidades</a>
+      <a href="#cine">Cine</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#reel">Reel</a>
       <a href="#proceso">Proceso 3D</a>
       <a href="#color">Color</a>
       <a href="#clientes">Clientes</a>
+      <a href="#plugins">Plugins</a>
       <a href="#equipo">Equipo</a>
     </div>
     <button class="navtoggle" id="navtoggle" aria-label="Abrir menú">MENÚ</button>
@@ -274,18 +35,20 @@
 
 <section class="hero" id="top">
   <canvas id="lensCanvas"></canvas>
+  <div class="bloom wig" style="width:4200px;height:420px;background:#DD4B24;top:-120px;left:8%;"></div>
+  <div class="bloom wig-b" style="width:3600px;height:200px;background:#3C6A65;bottom:-140px;right:6%;opacity:.35;"></div>
   <div class="wrap">
     <div class="hero-grid">
       <div>
         <div class="status"><span class="dot"></span> DISPONIBLE — FREELANCE Y TIEMPO COMPLETO</div>
-        <h1>Un solo creador cubre el rodaje entero <span class="em">y</span> toda la post.</h1>
-        <p class="lede">Preproducción, dirección de fotografía, piloto de drone y filmmaker en cámara. Editor, colorista, artista 3D y VFX en la mesa de edición. El ojo de ventas que piden los infoproductores y el criterio de ingeniero que automatiza el flujo detrás.</p>
+        <h1>Contratas una persona. Recibes <span class="em">un equipo entero</span>.</h1>
+        <p class="lede">Filmé, edité y coloreé una película que llegó a sala de cine yo solo. Eso mismo aplico a tu marca: rodaje con drone y cámara propios, edición, color, 3D y VFX — y videos pensados para vender, no para adornar.</p>
         <div class="hero-cta btn-row">
           <a href="#trabajo" class="btn">Ver trabajo</a>
           <a href="#contacto" class="btn btn-ghost">Hablemos</a>
         </div>
       </div>
-      <div class="hero-photo" id="heroPhoto">
+      <div class="hero-photo wig" id="heroPhoto">
         <img src="assets/antonio-headshot.png" alt="Enrique Antonio Cepeda en su estación de trabajo">
       </div>
     </div>
@@ -293,27 +56,27 @@
 </section>
 
 <div class="marquee">
-  <div class="marquee-track">
+  <div class="marquee-track fade-x">
     <span>CGI / FOOH<em>·</em>COLOR GRADING<em>·</em>ADS &amp; VSL<em>·</em>REELS A VOLUMEN<em>·</em>DRONE FPV<em>·</em>ANIMACIÓN 3D<em>·</em>TRACKING<em>·</em>SOUND DESIGN<em>·</em>DIRECCIÓN DE FOTOGRAFÍA<em>·</em></span>
     <span>CGI / FOOH<em>·</em>COLOR GRADING<em>·</em>ADS &amp; VSL<em>·</em>REELS A VOLUMEN<em>·</em>DRONE FPV<em>·</em>ANIMACIÓN 3D<em>·</em>TRACKING<em>·</em>SOUND DESIGN<em>·</em>DIRECCIÓN DE FOTOGRAFÍA<em>·</em></span>
   </div>
 </div>
 
 <div class="proof">
-  <div class="proof-item"><div class="n" data-count="5.4">0</div><div class="c">millones de vistas orgánicas — Jurassic El Edén</div></div>
-  <div class="proof-item"><div class="n" data-count="60">0</div><div class="c">reels/mes de capacidad sostenida</div></div>
-  <div class="proof-item"><div class="n" data-count="6">0</div><div class="c">clientes activos e infoproductores</div></div>
-  <div class="proof-item"><div class="n" data-count="1">0</div><div class="c">estreno en cine como solo-filmmaker</div></div>
+  <div class="proof-item tex"><div class="n" data-count="5.4">0</div><div class="c">millones de vistas orgánicas — Jurassic El Edén</div></div>
+  <div class="proof-item tex"><div class="n" data-count="60">0</div><div class="c">reels/mes de capacidad sostenida</div></div>
+  <div class="proof-item tex"><div class="n" data-count="6">0</div><div class="c">clientes activos e infoproductores</div></div>
+  <div class="proof-item tex"><div class="n" data-count="1">0</div><div class="c">estreno en cine como solo-filmmaker</div></div>
 </div>
 
 <section id="trabajo">
   <div class="wrap reveal">
     <div class="eyebrow">TRABAJO SELECCIONADO</div>
-    <h2>El trabajo primero. Todo lo demás lo sustenta.</h2>
-    <p class="sub">Cada pieza con su contexto: qué pedía el cliente, qué se hizo y qué resultado dio.</p>
+    <h2>Lo que hice para otros, con el número al lado.</h2>
+    <p class="sub">Sin adjetivos: qué problema tenía el cliente, qué se hizo y qué pasó después.</p>
     <div class="work-grid">
       <a href="#" class="work lg" data-tilt>
-        <svg class="work-bg" viewBox="0 0 400 200" preserveAspectRatio="none"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2A1C12"/><stop offset=".5" stop-color="#4A2A16"/><stop offset="1" stop-color="#6B3A1E"/></linearGradient></defs><rect width="400" height="200" fill="url(#g1)"/><path d="M0 150 Q100 110 200 140 T400 120 L400 200 L0 200Z" fill="#1A1008" opacity=".7"/></svg>
+        <img class="work-bg" src="assets/work-eleden.jpg" alt="Jurassic El Edén">
         <span class="go">VER CASO →</span>
         <div class="work-body">
           <div class="tag">CGI · FOOH · DIRECCIÓN</div>
@@ -323,7 +86,7 @@
         </div>
       </a>
       <a href="#" class="work md" data-tilt>
-        <svg class="work-bg" viewBox="0 0 200 200" preserveAspectRatio="none"><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1E2422"/><stop offset="1" stop-color="#3C4A44"/></linearGradient></defs><rect width="200" height="200" fill="url(#g2)"/></svg>
+        <img class="work-bg" src="assets/work-maria.jpg" alt="María Salazar">
         <span class="go">VER CASO →</span>
         <div class="work-body">
           <div class="tag">ADS · VSL</div>
@@ -333,7 +96,7 @@
         </div>
       </a>
       <a href="#" class="work md" data-tilt>
-        <svg class="work-bg" viewBox="0 0 200 200" preserveAspectRatio="none"><defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#241B14"/><stop offset="1" stop-color="#55341D"/></linearGradient></defs><rect width="200" height="200" fill="url(#g3)"/></svg>
+        <img class="work-bg" src="assets/work-nova.jpg" alt="Sistema Nova">
         <span class="go">VER CASO →</span>
         <div class="work-body">
           <div class="tag">VSL · MOTION</div>
@@ -343,25 +106,40 @@
         </div>
       </a>
       <a href="#" class="work sm" data-tilt>
-        <svg class="work-bg" viewBox="0 0 200 200" preserveAspectRatio="none"><rect width="200" height="200" fill="#211B17"/></svg>
+        <img class="work-bg" src="assets/work-novaagencia.jpg" alt="Nova Agencia">
         <span class="go">VER CASO →</span>
         <div class="work-body"><div class="tag">INFOPRODUCTO</div><h3>Nova Agencia</h3><p>Pipeline recurrente de piezas para clientes top.</p></div>
       </a>
       <a href="https://instagram.com/silviarubio.m" target="_blank" rel="noopener" class="work sm" data-tilt>
-        <svg class="work-bg" viewBox="0 0 200 200" preserveAspectRatio="none"><rect width="200" height="200" fill="#231A1E"/></svg>
+        <img class="work-bg" src="assets/work-theglow.jpg" alt="The Glow">
         <span class="go">VER PERFIL →</span>
         <div class="work-body"><div class="tag">VSL · MOTION</div><h3>The Glow</h3><p>Motion graphics para comunidad de Instagram.</p></div>
       </a>
       <a href="#" class="work sm" data-tilt>
-        <svg class="work-bg" viewBox="0 0 200 200" preserveAspectRatio="none"><rect width="200" height="200" fill="#1C1F23"/></svg>
+        <img class="work-bg" src="assets/work-nicolas.jpg" alt="Nicolás Lara">
         <span class="go">VER CASO →</span>
         <div class="work-body"><div class="tag">EDICIÓN DE CANAL</div><h3>Nicolás Lara</h3><p>Crecimiento de canal desde cero.</p></div>
       </a>
     </div>
+
+    <div class="pitch">
+      <div class="pz tex" data-tilt>
+        <div class="q">"Coordinar camarógrafo, editor, colorista y animador me consume la semana."</div>
+        <div class="a">Aquí hay <span class="k">un solo interlocutor</span> de la idea a la entrega. Sin briefs repetidos, sin archivos perdidos entre freelancers, sin culpas cruzadas cuando algo sale mal.</div>
+      </div>
+      <div class="pz tex" data-tilt>
+        <div class="q">"Necesito volumen, pero lo barato me sale mal editado."</div>
+        <div class="a">Mis propios plugins hacen el trabajo repetitivo, así que el <span class="k">volumen no se paga con calidad</span>. Lo que se automatiza es lo mecánico; el criterio de corte sigue siendo humano.</div>
+      </div>
+      <div class="pz tex" data-tilt>
+        <div class="q">"Los videos se ven bonitos pero no venden nada."</div>
+        <div class="a">Vengo de editar para infoproductores que <span class="k">viven de que el video convierta</span>. El gancho, el ritmo y la estructura se diseñan para retención, no para el portafolio.</div>
+      </div>
+    </div>
     <div class="flag">
       <div>
-        <div class="mono">PENDIENTE — LINKS Y CASO DE CINE</div>
-        <p>Cada tarjeta está lista para apuntar a su caso o perfil real. Faltan: los enlaces de El Edén, María Salazar, Sistema Nova, Nova y Nicolás Lara, y el crédito del estreno en cine como solo-filmmaker.</p>
+        <div class="mono">PENDIENTE — LINKS DE CADA CASO</div>
+        <p>Cada tarjeta está lista para apuntar a su caso o perfil real. Faltan los enlaces de El Edén, María Salazar, Sistema Nova, Nova Agencia y Nicolás Lara.</p>
       </div>
     </div>
   </div>
@@ -370,30 +148,30 @@
 <section id="capacidades">
   <div class="wrap reveal">
     <div class="eyebrow">CAPACIDADES</div>
-    <h2>Cinco disciplinas que suelen venir en cinco contratos.</h2>
-    <p class="sub">Desde antes de que ruede la cámara hasta que el cliente ve resultados.</p>
+    <h2>Cinco facturas distintas, en una sola.</h2>
+    <p class="sub">Cada una de estas la cobra normalmente un proveedor aparte, con su propio brief y sus propios tiempos muertos.</p>
     <div class="caps">
-      <div class="cap" data-tilt>
+      <div class="cap tex" data-tilt>
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="8" height="6"/><rect x="13" y="5" width="8" height="6"/><rect x="3" y="13" width="8" height="6"/><path d="M15 15l4 2-4 2z"/></svg>
         <div class="tag">PREPRODUCCIÓN</div><h3>Historia y plan de rodaje</h3>
         <p>Estructura, ritmo y planos definidos antes de grabar — oficio aprendido editando para youtubers grandes desde el guion hacia atrás.</p>
       </div>
-      <div class="cap" data-tilt>
+      <div class="cap tex" data-tilt>
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="3.2"/><circle cx="4.8" cy="8.4" r="1.7"/><circle cx="19.2" cy="8.4" r="1.7"/><path d="M6.4 9.6l3 1.4M17.6 9.6l-3 1.4M8 15.4h8l-1.6 4.4H9.6z"/></svg>
         <div class="tag">PRODUCCIÓN</div><h3>Rodaje completo</h3>
         <p>Dirección, dirección de fotografía y piloto de drone propio — cobertura de principio a fin sin depender de terceros.</p>
       </div>
-      <div class="cap" data-tilt>
+      <div class="cap tex" data-tilt>
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8.2"/><path d="M12 3.8v3.4M12 16.8v3.4M3.8 12h3.4M16.8 12h3.4M6.3 6.3l2.4 2.4M15.3 15.3l2.4 2.4M17.7 6.3l-2.4 2.4M8.7 15.3l-2.4 2.4"/></svg>
         <div class="tag">POST</div><h3>Edición, color y VFX</h3>
         <p>Edición, 3D, tracking, compositing y color science real — pipeline ACES 2.0 con emulación fotoquímica.</p>
       </div>
-      <div class="cap" data-tilt>
+      <div class="cap tex" data-tilt>
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 17l4.5-6 3.5 4L15.5 9 20 15.5"/><path d="M4 20.5h16"/><circle cx="20" cy="15.5" r="1.2"/></svg>
         <div class="tag">COMERCIAL</div><h3>Edición que vende</h3>
         <p>Ads, VSL y reels a volumen para marcas, negocios locales e infoproductores, con historial de aportar a ventas.</p>
       </div>
-      <div class="cap" data-tilt>
+      <div class="cap tex" data-tilt>
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="7" cy="7" r="2"/><circle cx="17" cy="7" r="2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M9 7h6M7 9v6M17 9v6M9 17h6"/></svg>
         <div class="tag">INGENIERÍA</div><h3>Flujo automatizado</h3>
         <p>Plugins propios y flujos con IA — la parte que la mayoría de editores no sabe construir.</p>
@@ -418,14 +196,196 @@
   </div>
 </section>
 
+
+
+
+<section id="cine">
+  <div class="wrap reveal">
+    <div class="cine tex">
+      <div class="cine-badge">◉ ESTRENO EN SALA DE CINE</div>
+      <h2>Escribí, filmé, edité y coloreé una película que llegó a cine. Solo.</h2>
+      <p class="cine-lede">No es un reel de agencia con diez personas detrás. Es una película entera sostenida por una sola persona: guion, cámara, luz, sonido, edición, VFX y color. Si eso se sostiene 90 minutos en pantalla grande, tu campaña de 30 segundos no es un riesgo.</p>
+      <div class="cine-media">
+        <figure class="cm v wig" data-tilt>
+          <video src="assets/cine-rodaje.mp4" poster="assets/cine-rodaje.jpg" muted loop playsinline preload="none"></video>
+          <figcaption>cine-rodaje.mp4 — cómo se grabó</figcaption>
+        </figure>
+        <figure class="cm v wig-b" data-tilt>
+          <video src="assets/cine-estreno.mp4" poster="assets/cine-estreno.jpg" muted loop playsinline preload="none"></video>
+          <figcaption>cine-estreno.mp4 — el día del estreno</figcaption>
+        </figure>
+        <figure class="cm hz wig-c" data-tilt>
+          <video src="assets/cine-final.mp4" poster="assets/cine-final.jpg" muted loop playsinline preload="none"></video>
+          <figcaption>cine-final.mp4 — la película terminada</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="servicios">
+  <div class="wrap reveal">
+    <div class="eyebrow">SERVICIOS</div>
+    <h2>Contrátame por lo que necesitas, no por un paquete cerrado.</h2>
+    <p class="sub">Cada servicio con su propia muestra en video. Pasa el mouse para pausar el carrusel y reproducir la pieza.</p>
+  </div>
+  <div class="svc-rail fade-x">
+    <div class="svc-track">
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-vsl.mp4" poster="assets/svc-vsl.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-vsl.mp4</span>
+          <div class="svc-cap"><div class="t">VSL</div><div class="d">Cartas de venta que sostienen atención 10+ min</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-ads.mp4" poster="assets/svc-ads.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-ads.mp4</span>
+          <div class="svc-cap"><div class="t">Ads</div><div class="d">Creativos para pauta, pensados para CTR y retención</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-color.mp4" poster="assets/svc-color.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-color.mp4</span>
+          <div class="svc-cap"><div class="t">Color grading</div><div class="d">ACES 2.0 y emulación fotoquímica Kodak/Fuji</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-motion.mp4" poster="assets/svc-motion.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-motion.mp4</span>
+          <div class="svc-cap"><div class="t">Motion graphics</div><div class="d">Animación 2D, tipografía y gráficos de marca</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-vfx.mp4" poster="assets/svc-vfx.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-vfx.mp4</span>
+          <div class="svc-cap"><div class="t">VFX / FOOH</div><div class="d">CGI integrado, tracking y compositing</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-vsl.mp4" poster="assets/svc-vsl.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-vsl.mp4</span>
+          <div class="svc-cap"><div class="t">VSL</div><div class="d">Cartas de venta que sostienen atención 10+ min</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-ads.mp4" poster="assets/svc-ads.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-ads.mp4</span>
+          <div class="svc-cap"><div class="t">Ads</div><div class="d">Creativos para pauta, pensados para CTR y retención</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-color.mp4" poster="assets/svc-color.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-color.mp4</span>
+          <div class="svc-cap"><div class="t">Color grading</div><div class="d">ACES 2.0 y emulación fotoquímica Kodak/Fuji</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-motion.mp4" poster="assets/svc-motion.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-motion.mp4</span>
+          <div class="svc-cap"><div class="t">Motion graphics</div><div class="d">Animación 2D, tipografía y gráficos de marca</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-vfx.mp4" poster="assets/svc-vfx.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-vfx.mp4</span>
+          <div class="svc-cap"><div class="t">VFX / FOOH</div><div class="d">CGI integrado, tracking y compositing</div></div>
+        </a>
+    </div>
+  </div>
+  <div class="svc-rail fade-x" style="margin-top:16px;">
+    <div class="svc-track rev">
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-ia.mp4" poster="assets/svc-ia.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-ia.mp4</span>
+          <div class="svc-cap"><div class="t">Flujos con IA</div><div class="d">Automatización de post y generación asistida</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-plugins.mp4" poster="assets/svc-plugins.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-plugins.mp4</span>
+          <div class="svc-cap"><div class="t">Plugins a medida</div><div class="d">Herramientas propias para Premiere, AE y Resolve</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-youtube.mp4" poster="assets/svc-youtube.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-youtube.mp4</span>
+          <div class="svc-cap"><div class="t">Video YouTube</div><div class="d">Edición de canal con ritmo de retención</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-documental.mp4" poster="assets/svc-documental.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-documental.mp4</span>
+          <div class="svc-cap"><div class="t">Documental</div><div class="d">Narrativa larga, entrevista y observacional</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-ia.mp4" poster="assets/svc-ia.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-ia.mp4</span>
+          <div class="svc-cap"><div class="t">Flujos con IA</div><div class="d">Automatización de post y generación asistida</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-plugins.mp4" poster="assets/svc-plugins.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-plugins.mp4</span>
+          <div class="svc-cap"><div class="t">Plugins a medida</div><div class="d">Herramientas propias para Premiere, AE y Resolve</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-youtube.mp4" poster="assets/svc-youtube.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-youtube.mp4</span>
+          <div class="svc-cap"><div class="t">Video YouTube</div><div class="d">Edición de canal con ritmo de retención</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-documental.mp4" poster="assets/svc-documental.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-documental.mp4</span>
+          <div class="svc-cap"><div class="t">Documental</div><div class="d">Narrativa larga, entrevista y observacional</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-ia.mp4" poster="assets/svc-ia.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-ia.mp4</span>
+          <div class="svc-cap"><div class="t">Flujos con IA</div><div class="d">Automatización de post y generación asistida</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-plugins.mp4" poster="assets/svc-plugins.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-plugins.mp4</span>
+          <div class="svc-cap"><div class="t">Plugins a medida</div><div class="d">Herramientas propias para Premiere, AE y Resolve</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-youtube.mp4" poster="assets/svc-youtube.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-youtube.mp4</span>
+          <div class="svc-cap"><div class="t">Video YouTube</div><div class="d">Edición de canal con ritmo de retención</div></div>
+        </a>
+        <a href="#contacto" class="svc">
+          <video src="assets/svc-documental.mp4" poster="assets/svc-documental.jpg" muted loop playsinline preload="none"></video>
+          <span class="svc-badge">svc-documental.mp4</span>
+          <div class="svc-cap"><div class="t">Documental</div><div class="d">Narrativa larga, entrevista y observacional</div></div>
+        </a>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:34px;">
+    <div class="btn-row"><a href="#contacto" class="btn">Pedir presupuesto</a></div>
+  </div>
+</section>
+
+<section id="reel">
+  <div class="wrap reveal">
+    <div class="eyebrow">REEL</div>
+    <h2>Reel principal y casos en video.</h2>
+    <p class="sub">Los videos de abajo son referencias con grano — reemplázalos por tus archivos reales con el mismo nombre y el sitio queda listo.</p>
+    <div class="reel-main">
+      <video src="assets/reel-principal.mp4" poster="assets/reel-poster.jpg" autoplay muted loop playsinline></video>
+      <span class="reel-badge">assets/reel-principal.mp4 — 60-90s, 1920×1080</span>
+    </div>
+    <div class="reel-vert">
+      <figure class="rv" data-tilt>
+        <video src="assets/caso-ads.mp4" poster="assets/caso-ads-poster.jpg" muted loop playsinline></video>
+        <figcaption>assets/caso-ads.mp4 — 1080×1350</figcaption>
+      </figure>
+      <figure class="rv" data-tilt>
+        <video src="assets/caso-fooh.mp4" poster="assets/caso-fooh-poster.jpg" muted loop playsinline></video>
+        <figcaption>assets/caso-fooh.mp4 — 1080×1350</figcaption>
+      </figure>
+      <figure class="rv" data-tilt>
+        <video src="assets/caso-ads.mp4" poster="assets/caso-ads-poster.jpg" muted loop playsinline></video>
+        <figcaption>assets/caso-extra.mp4 — 1080×1350</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <section id="color">
   <div class="wrap reveal">
     <div class="eyebrow">ANTES / DESPUÉS — COLOR</div>
     <h2>Arrastra para comparar el grading.</h2>
     <p class="sub">Pipeline real: YRGB → CineMatch → PowerGrades → Dehancer → emulación de impresión Kodak 2383/2393 → Rec.709.</p>
     <div class="cw" id="cw">
-      <div class="cw-layer cw-after">DESPUÉS — grading final, emulación 500T</div>
-      <div class="cw-layer cw-before" id="cwBefore">ANTES — cámara sin gradear</div>
+      <img class="cw-img" src="assets/color-despues.jpg" alt="Después del grading">
+      <img class="cw-img cw-before" id="cwBefore" src="assets/color-antes.jpg" alt="Antes del grading">
       <div class="cw-handle" id="cwHandle"></div>
       <input type="range" min="0" max="100" value="50" class="cw-range" id="cwRange" aria-label="Comparar antes y después">
     </div>
@@ -439,13 +399,55 @@
     <h2>Mira alrededor mientras grabo.</h2>
     <p class="sub">Arrastra sobre la imagen para rotar el ángulo.</p>
     <div class="pano" id="pano">
-      <div class="pano-track" id="panoTrack">
-        <div class="pano-band" style="background:linear-gradient(135deg,#241B14,#3A2A1C);">0° — cámara al frente</div>
-        <div class="pano-band" style="background:linear-gradient(135deg,#2A2118,#4A3220);">90° — drone en mano</div>
-        <div class="pano-band" style="background:linear-gradient(135deg,#1E2422,#33413C);">180° — detrás de escena</div>
-        <div class="pano-band" style="background:linear-gradient(135deg,#241B14,#3A2A1C);">270° — set completo</div>
-      </div>
+      <img class="pano-track" id="panoTrack" src="assets/pano-360.jpg" alt="Vista 360 del set" draggable="false">
       <div class="pano-hud" id="panoHud">ARRASTRA — 0°</div>
+    </div>
+  </div>
+</section>
+
+
+<section id="plugins">
+  <div class="wrap reveal">
+    <div class="eyebrow">QUÉ GANAS TRABAJANDO CONMIGO</div>
+    <h2>Construí mis propias herramientas. Tú ves el resultado.</h2>
+    <p class="sub">Programé seis herramientas para mi propio flujo de trabajo. No te van a interesar por dentro — lo que te interesa es lo que cambian en tu entrega.</p>
+    <div class="plug-grid">
+      <div class="plug tex" data-tilt>
+        <div class="pn">Subtítulos sin esperas</div>
+        <div class="pd">Tus videos salen subtitulados y traducidos el mismo día, no tres días después. Si necesitas la pieza en otro idioma para otro mercado, no cuesta un proceso aparte.</div>
+        <div class="ps">Entregas el mismo día</div>
+      </div>
+      <div class="plug tex" data-tilt>
+        <div class="pn">Nada se queda en el disco</div>
+        <div class="pd">Todo el material grabado queda revisado y clasificado, no solo lo que alcanzó a mirar el editor. Pagas un rodaje y se aprovecha completo.</div>
+        <div class="ps">Se usa todo lo que pagaste</div>
+      </div>
+      <div class="plug tex" data-tilt>
+        <div class="pn">Movimiento con intención</div>
+        <div class="pd">Los acercamientos caen donde la persona dice algo que importa, no cada cinco segundos porque sí. Se siente editado por alguien, no por un robot.</div>
+        <div class="ps">Retención, no mareo</div>
+      </div>
+      <div class="plug tex" data-tilt>
+        <div class="pn">Audio que nadie tiene que subir</div>
+        <div class="pd">El volumen queda parejo entre voz, música y efectos, y al nivel que exigen Instagram, YouTube y TikTok. Tu audiencia no tiene que tocar el control.</div>
+        <div class="ps">Listo para cada plataforma</div>
+      </div>
+      <div class="plug tex" data-tilt>
+        <div class="pn">Treinta piezas, un solo pedido</div>
+        <div class="pd">Pides la campaña completa y llega completa, cada pieza nombrada y ordenada. Sin ir reclamando videos sueltos durante la semana.</div>
+        <div class="ps">Entregas en bloque</div>
+      </div>
+      <div class="plug tex" data-tilt>
+        <div class="pn">Consistencia en toda la campaña</div>
+        <div class="pd">La pieza número treinta se ve igual de cuidada que la primera. Tu marca no se degrada cuando sube el volumen.</div>
+        <div class="ps">Mismo acabado siempre</div>
+      </div>
+    </div>
+    <div class="flag">
+      <div>
+        <div class="mono">AJUSTA LAS CIFRAS</div>
+        <p>La línea naranja de cada tarjeta puede llevar un número concreto en vez de una frase. Pásame cuánto te tomaba antes y cuánto ahora ("8 h → 40 min") y lo cambio: un número siempre convence más.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -456,32 +458,32 @@
     <h2>Con quién trabajo.</h2>
     <p class="sub">Perfiles reales de los clientes con los que hay relación activa.</p>
     <div class="socials">
-      <a href="https://instagram.com/silviarubio.m" target="_blank" rel="noopener" class="sp" data-tilt>
+      <a href="https://instagram.com/silviarubio.m" target="_blank" rel="noopener" class="sp tex" data-tilt>
         <div class="sp-head"><div class="sp-av">S</div><div class="sp-id"><div class="h">@silviarubio.m</div><div class="n">The Glow — infoproducto</div></div></div>
         <div class="sp-stats"><div class="sp-stat"><div class="v">VSL</div><div class="l">motion graphics</div></div><div class="sp-stat"><div class="v">Activo</div><div class="l">estado</div></div></div>
         <div class="sp-foot"><span>Ver perfil</span><span>↗</span></div>
       </a>
-      <a href="#" class="sp" data-tilt>
+      <a href="#" class="sp tex" data-tilt>
         <div class="sp-head"><div class="sp-av">M</div><div class="sp-id"><div class="h">María Salazar</div><div class="n">Infoproductora</div></div></div>
         <div class="sp-stats"><div class="sp-stat"><div class="v">Ads · VSL</div><div class="l">servicio</div></div><div class="sp-stat"><div class="v">Recurrente</div><div class="l">estado</div></div></div>
         <div class="sp-foot"><span>Falta enlace</span><span>↗</span></div>
       </a>
-      <a href="#" class="sp" data-tilt>
+      <a href="#" class="sp tex" data-tilt>
         <div class="sp-head"><div class="sp-av">N</div><div class="sp-id"><div class="h">Sistema Nova</div><div class="n">Retainer europeo</div></div></div>
         <div class="sp-stats"><div class="sp-stat"><div class="v">VSL</div><div class="l">servicio</div></div><div class="sp-stat"><div class="v">Multianual</div><div class="l">duración</div></div></div>
         <div class="sp-foot"><span>Falta enlace</span><span>↗</span></div>
       </a>
-      <a href="#" class="sp" data-tilt>
+      <a href="#" class="sp tex" data-tilt>
         <div class="sp-head"><div class="sp-av">N</div><div class="sp-id"><div class="h">Nova Agencia</div><div class="n">Clientes top de infoproducto</div></div></div>
         <div class="sp-stats"><div class="sp-stat"><div class="v">Pipeline</div><div class="l">relación</div></div><div class="sp-stat"><div class="v">Activo</div><div class="l">estado</div></div></div>
         <div class="sp-foot"><span>Falta enlace</span><span>↗</span></div>
       </a>
-      <a href="#" class="sp" data-tilt>
+      <a href="#" class="sp tex" data-tilt>
         <div class="sp-head"><div class="sp-av">J</div><div class="sp-id"><div class="h">Javi Reelve</div><div class="n">Ads y VSL</div></div></div>
         <div class="sp-stats"><div class="sp-stat"><div class="v">Ads</div><div class="l">servicio</div></div><div class="sp-stat"><div class="v">Activo</div><div class="l">estado</div></div></div>
         <div class="sp-foot"><span>Falta enlace</span><span>↗</span></div>
       </a>
-      <a href="#" class="sp" data-tilt>
+      <a href="#" class="sp tex" data-tilt>
         <div class="sp-head"><div class="sp-av">E</div><div class="sp-id"><div class="h">CC El Edén</div><div class="n">Centro comercial</div></div></div>
         <div class="sp-stats"><div class="sp-stat"><div class="v">5.4M+</div><div class="l">vistas</div></div><div class="sp-stat"><div class="v">CGI/FOOH</div><div class="l">servicio</div></div></div>
         <div class="sp-foot"><span>Falta enlace</span><span>↗</span></div>
@@ -512,17 +514,57 @@
 
     <p class="sub" style="margin-top:38px;">Making of — espacios listos para tus fotos reales:</p>
     <div class="slots">
-      <div class="slot"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="8" r="1.6"/><circle cx="19" cy="8" r="1.6"/><path d="M8 15h8l-1.5 4h-5z"/></svg><div class="mono">VERTICAL — VOLANDO DRONE</div></div>
-      <div class="slot"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="7" width="12" height="10" rx="1.5"/><path d="M15 11l6-3v8l-6-3z"/></svg><div class="mono">VERTICAL — CÁMARA EN MANO</div></div>
-      <div class="slot"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 20V9l9-5 9 5v11"/><path d="M9 20v-6h6v6"/></svg><div class="mono">SET GENERAL</div></div>
-      <div class="slot"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="4" width="7" height="7"/><rect x="14" y="4" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg><div class="mono">FLATLAY DE EQUIPO</div></div>
+      <figure class="slot wig" data-tilt><img src="assets/makingof-drone.jpg" alt="Volando drone en locación"><figcaption class="mono">assets/makingof-drone.jpg</figcaption></figure>
+      <figure class="slot wig-b" data-tilt><img src="assets/makingof-camara.jpg" alt="Cámara en mano durante rodaje"><figcaption class="mono">assets/makingof-camara.jpg</figcaption></figure>
+      <figure class="slot wig-c" data-tilt><img src="assets/makingof-set.jpg" alt="Set general"><figcaption class="mono">assets/makingof-set.jpg</figcaption></figure>
+      <figure class="slot wig" data-tilt><img src="assets/makingof-gear.jpg" alt="Equipo completo"><figcaption class="mono">assets/makingof-gear.jpg</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+
+<section id="assets">
+  <div class="wrap reveal">
+    <div class="eyebrow">GUÍA DE REEMPLAZO</div>
+    <h2>Qué archivo va en cada lugar.</h2>
+    <p class="sub">Todo lo que ves ahora son referencias generadas. Reemplaza cada archivo en la carpeta <span class="mono">assets/</span> conservando el nombre exacto y el sitio se actualiza solo — sin tocar código.</p>
+    <div class="assets-wrap">
+      <table class="assets-tbl">
+        <thead><tr><th>ARCHIVO</th><th>MEDIDA SUGERIDA</th><th>DÓNDE APARECE</th></tr></thead>
+        <tbody>
+      <tr><td class="f">assets/reel-principal.mp4</td><td class="d">1920×1080 · 60-90s</td><td>Reel principal del hero de la sección Reel. Autoplay en loop, sin audio.</td></tr>
+      <tr><td class="f">assets/caso-ads.mp4</td><td class="d">1080×1350 · 15-30s</td><td>Caso vertical de ads/VSL. Se reproduce al pasar el mouse.</td></tr>
+      <tr><td class="f">assets/caso-fooh.mp4</td><td class="d">1080×1350 · 15-30s</td><td>Caso vertical de CGI/FOOH.</td></tr>
+      <tr><td class="f">assets/caso-extra.mp4</td><td class="d">1080×1350 · 15-30s</td><td>Tercer caso vertical (crea este archivo).</td></tr>
+      <tr><td class="f">assets/antonio-headshot.png</td><td class="d">1080×1350</td><td>Tu foto del hero. Conviértela a .webp para bajar el peso.</td></tr>
+      <tr><td class="f">assets/work-eleden.jpg</td><td class="d">1200×675</td><td>Tarjeta grande de Jurassic El Edén.</td></tr>
+      <tr><td class="f">assets/work-maria.jpg</td><td class="d">800×800</td><td>Tarjeta de María Salazar.</td></tr>
+      <tr><td class="f">assets/work-nova.jpg</td><td class="d">800×800</td><td>Tarjeta de Sistema Nova.</td></tr>
+      <tr><td class="f">assets/work-novaagencia.jpg</td><td class="d">800×600</td><td>Tarjeta de Nova Agencia.</td></tr>
+      <tr><td class="f">assets/work-theglow.jpg</td><td class="d">800×600</td><td>Tarjeta de The Glow.</td></tr>
+      <tr><td class="f">assets/work-nicolas.jpg</td><td class="d">800×600</td><td>Tarjeta de Nicolás Lara.</td></tr>
+      <tr><td class="f">assets/color-antes.jpg</td><td class="d">1600×900</td><td>Frame SIN gradear del comparador. Mismo encuadre que el después.</td></tr>
+      <tr><td class="f">assets/color-despues.jpg</td><td class="d">1600×900</td><td>Frame gradeado. Debe ser el mismo frame exacto.</td></tr>
+      <tr><td class="f">assets/pano-360.jpg</td><td class="d">3200×900</td><td>Panorámica equirectangular del Insta360, formato tira horizontal.</td></tr>
+      <tr><td class="f">assets/makingof-drone.jpg</td><td class="d">900×1200</td><td>Vertical volando drone.</td></tr>
+      <tr><td class="f">assets/makingof-camara.jpg</td><td class="d">900×1200</td><td>Vertical con cámara en mano.</td></tr>
+      <tr><td class="f">assets/makingof-set.jpg</td><td class="d">1200×900</td><td>Set general.</td></tr>
+      <tr><td class="f">assets/makingof-gear.jpg</td><td class="d">1200×900</td><td>Flatlay del equipo.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="flag">
+      <div>
+        <div class="mono">ANTES DE PUBLICAR</div>
+        <p>Cambia también tu correo y tu número de WhatsApp en los botones de contacto, y los enlaces de cada cliente en las tarjetas de trabajo. Esta sección se borra antes de subir el sitio.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <footer id="contacto">
   <div class="wrap reveal">
-    <h3>¿Necesitas un editor fijo para volumen, o alguien que ruede, edite, gradúe y haga VFX sin pasar por cuatro personas?</h3>
+    <h3>Cuéntame qué necesitas resolver. Te respondo con un plan, no con un catálogo.</h3>
     <div class="btn-row">
       <a href="mailto:tucorreo@ejemplo.com?subject=Colaboraci%C3%B3n%20%E2%80%94%20portafolio" class="btn">Escríbeme</a>
       <a href="https://wa.me/57XXXXXXXXXX" target="_blank" rel="noopener" class="btn btn-ghost">WhatsApp</a>
@@ -537,172 +579,6 @@
   </div>
 </footer>
 
-<script>
-/* ---------- custom cursor ---------- */
-const cursor = document.getElementById('cursor');
-let cx = innerWidth/2, cy = innerHeight/2, tx = cx, ty = cy;
-addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
-(function loop(){ cx += (tx-cx)*.18; cy += (ty-cy)*.18;
-  cursor.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`;
-  requestAnimationFrame(loop); })();
-document.querySelectorAll('a,button,.work,.cap,.sp,.cw,.pano').forEach(el=>{
-  el.addEventListener('mouseenter',()=>cursor.classList.add('big'));
-  el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
-});
-
-/* ---------- mobile nav ---------- */
-document.getElementById('navtoggle').addEventListener('click',()=>{
-  document.getElementById('navlinks').classList.toggle('open');
-});
-document.querySelectorAll('#navlinks a').forEach(a=>{
-  a.addEventListener('click',()=>document.getElementById('navlinks').classList.remove('open'));
-});
-
-/* ---------- WebGL aperture (hero) ---------- */
-(function(){
-  const canvas = document.getElementById('lensCanvas');
-  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-  if(!gl) return;
-  const vs = `attribute vec2 p; void main(){ gl_Position = vec4(p,0.0,1.0); }`;
-  const fs = `
-  precision highp float;
-  uniform vec2 u_res; uniform float u_time; uniform vec2 u_mouse;
-  // rotate helper
-  mat2 rot(float a){ float c=cos(a), s=sin(a); return mat2(c,-s,s,c); }
-  // signed distance to an n-sided polygon blade edge set (iris approximation)
-  float iris(vec2 uv, float r, float blades, float rotAmt){
-    float a = atan(uv.y, uv.x) + rotAmt;
-    float seg = 6.28318/blades;
-    float d = cos(floor(.5 + a/seg)*seg - a) * length(uv);
-    return d - r;
-  }
-  void main(){
-    vec2 uv = (gl_FragCoord.xy - .5*u_res)/min(u_res.x,u_res.y);
-    vec2 m = (u_mouse - .5*u_res)/min(u_res.x,u_res.y);
-    // parallax toward mouse
-    uv += m*0.06;
-    float t = u_time*0.22;
-    vec3 col = vec3(0.0);
-    // concentric iris rings -> lens barrel feel
-    for(int i=0;i<5;i++){
-      float fi = float(i);
-      float r = 0.20 + fi*0.085;
-      float d = iris(uv*rot(t*(0.25+fi*0.08) + fi*0.5), r, 8.0, 0.0);
-      float ring = smoothstep(0.012, 0.0, abs(d));
-      // 500T halation: warm orange core bleeding outward
-      vec3 warm = vec3(0.87,0.29,0.14)*(1.0-fi*0.13);
-      col += ring*warm*0.75;
-      // soft bloom around each ring
-      col += exp(-abs(d)*26.0)*warm*0.10;
-    }
-    // faint cool counter-glow (grain/teal shadow bias of the stock)
-    float centre = length(uv);
-    col += vec3(0.42,0.48,0.47)*exp(-centre*4.2)*0.10;
-    // mouse-follow specular highlight
-    float sp = exp(-length(uv-m*0.9)*7.0);
-    col += vec3(0.95,0.55,0.32)*sp*0.14;
-    // vignette + gamma
-    col *= smoothstep(1.25, 0.15, centre);
-    col = pow(col, vec3(0.86));
-    gl_FragColor = vec4(col, 1.0);
-  }`;
-  function sh(type, src){ const s = gl.createShader(type); gl.shaderSource(s,src); gl.compileShader(s); return s; }
-  const prog = gl.createProgram();
-  gl.attachShader(prog, sh(gl.VERTEX_SHADER, vs));
-  gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, fs));
-  gl.linkProgram(prog); gl.useProgram(prog);
-  const buf = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
-  const loc = gl.getAttribLocation(prog,'p');
-  gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
-  const uRes = gl.getUniformLocation(prog,'u_res'),
-        uTime = gl.getUniformLocation(prog,'u_time'),
-        uMouse = gl.getUniformLocation(prog,'u_mouse');
-  let mx = 0, my = 0, dpr = Math.min(devicePixelRatio||1, 2);
-  function resize(){
-    const r = canvas.getBoundingClientRect();
-    canvas.width = r.width*dpr; canvas.height = r.height*dpr;
-    gl.viewport(0,0,canvas.width,canvas.height);
-    mx = canvas.width/2; my = canvas.height/2;
-  }
-  addEventListener('resize', resize); resize();
-  canvas.parentElement.addEventListener('mousemove', e=>{
-    const r = canvas.getBoundingClientRect();
-    mx = (e.clientX-r.left)*dpr; my = (r.height-(e.clientY-r.top))*dpr;
-  });
-  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
-  const t0 = performance.now();
-  (function draw(){
-    gl.uniform2f(uRes, canvas.width, canvas.height);
-    gl.uniform1f(uTime, reduce ? 0 : (performance.now()-t0)/1000);
-    gl.uniform2f(uMouse, mx, my);
-    gl.drawArrays(gl.TRIANGLES,0,3);
-    requestAnimationFrame(draw);
-  })();
-})();
-
-/* ---------- 3D tilt ---------- */
-function tilt(el, deg){
-  el.addEventListener('pointermove', e=>{
-    const r = el.getBoundingClientRect();
-    const px = (e.clientX-r.left)/r.width - .5, py = (e.clientY-r.top)/r.height - .5;
-    el.style.transform = `perspective(800px) rotateX(${(-py*deg).toFixed(2)}deg) rotateY(${(px*deg).toFixed(2)}deg) translateZ(6px)`;
-  });
-  el.addEventListener('pointerleave', ()=>{ el.style.transform='perspective(800px) rotateX(0) rotateY(0)'; });
-}
-document.querySelectorAll('[data-tilt]').forEach(el=>tilt(el,5));
-const hp = document.getElementById('heroPhoto'); if(hp) tilt(hp,4);
-
-/* ---------- magnetic buttons ---------- */
-document.querySelectorAll('.btn').forEach(b=>{
-  b.addEventListener('pointermove', e=>{
-    const r = b.getBoundingClientRect();
-    b.style.transform = `translate(${((e.clientX-r.left)/r.width-.5)*8}px, ${((e.clientY-r.top)/r.height-.5)*6}px)`;
-  });
-  b.addEventListener('pointerleave', ()=>b.style.transform='');
-});
-
-/* ---------- before/after ---------- */
-const range=document.getElementById('cwRange'), before=document.getElementById('cwBefore'), handle=document.getElementById('cwHandle');
-range.addEventListener('input', e=>{
-  const v=e.target.value;
-  before.style.clipPath=`inset(0 ${100-v}% 0 0)`;
-  handle.style.left=v+'%';
-});
-
-/* ---------- 360 pano ---------- */
-const pano=document.getElementById('pano'), track=document.getElementById('panoTrack'), hud=document.getElementById('panoHud');
-let dragging=false, startX=0, startOff=0, off=0;
-function setOff(x){
-  const max = track.offsetWidth - pano.offsetWidth;
-  off = Math.min(0, Math.max(-max, x));
-  track.style.transform=`translateX(${off}px)`;
-  hud.textContent = `ARRASTRA — ${Math.round(Math.abs(off)/max*360)}°`;
-}
-pano.addEventListener('pointerdown', e=>{dragging=true;pano.classList.add('dragging');startX=e.clientX;startOff=off;pano.setPointerCapture(e.pointerId);});
-pano.addEventListener('pointermove', e=>{ if(dragging) setOff(startOff + (e.clientX-startX)); });
-['pointerup','pointerleave','pointercancel'].forEach(ev=>pano.addEventListener(ev,()=>{dragging=false;pano.classList.remove('dragging');}));
-
-/* ---------- scroll reveal + counters ---------- */
-const io = new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} }),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-const cio = new IntersectionObserver(es=>es.forEach(en=>{
-  if(!en.isIntersecting) return;
-  const el = en.target, target = parseFloat(el.dataset.count), dec = target % 1 !== 0;
-  let s = null;
-  function step(ts){
-    if(!s) s = ts;
-    const p = Math.min((ts-s)/1100, 1);
-    const val = target * (1 - Math.pow(1-p, 3));
-    el.textContent = dec ? val.toFixed(1) : Math.round(val);
-    if(p<1) requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
-  cio.unobserve(el);
-}),{threshold:.5});
-document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
-</script>
+<script src="js/main.js"></script>
 </body>
 </html>
